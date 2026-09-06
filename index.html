@@ -380,9 +380,79 @@ tr:last-child td{border-bottom:0}
   .tabs{margin-left:0;width:100%}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- ejercicios SPSS (emulador) ---------- */
+.spss-bar{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end;justify-content:space-between;
+  padding:14px 16px;background:var(--sunk);border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
+.spss-casosel{display:flex;flex-direction:column;gap:5px;font-family:var(--u);font-size:11px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.spss-casosel select,.spss-config select,.spss-config input[type=number]{font-family:var(--u);font-size:14px;
+  padding:7px 9px;border:1px solid var(--line2);border-radius:7px;background:var(--surface);color:var(--ink)}
+.spss-analizar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.spss-lbl{font-family:var(--u);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-right:2px}
+.spss-proc{font-family:var(--u);font-size:12.5px;font-weight:600;border:1px solid var(--line2);
+  background:var(--surface);color:var(--ink2);padding:7px 12px;border-radius:7px}
+.spss-proc:hover{border-color:var(--indigo);color:var(--ink)}
+.spss-proc.on{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
+.spss-datos{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.spss-vhd{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:9px 12px;background:var(--surface2);border-bottom:1px solid var(--line);
+  font-family:var(--u);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.spss-vacc{display:flex;gap:6px}
+.spss-grid{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+.spss-grid th,.spss-grid td{border:1px solid var(--line);padding:0;vertical-align:top}
+.spss-grid thead th{background:var(--sunk);padding:6px 7px;text-align:left;min-width:120px}
+.spss-vnom{width:100%;font-family:var(--u);font-size:13px;font-weight:600;border:0;background:transparent;
+  color:var(--ink);padding:2px 3px}
+.spss-vtipo-wrap{display:flex;align-items:center;gap:4px;margin-top:4px}
+.spss-vtipo{flex:1;font-family:var(--u);font-size:11px;border:1px solid var(--line);border-radius:5px;
+  background:var(--paper);color:var(--ink2);padding:2px 3px}
+.spss-delcol,.spss-delfila{border:0;background:none;color:var(--ink3);font-size:11px;padding:1px 4px}
+.spss-delcol:hover,.spss-delfila:hover{color:var(--brick)}
+.spss-rn{background:var(--sunk);color:var(--ink3);font-family:var(--m);font-size:11px;text-align:center;
+  min-width:34px;width:34px;padding:4px 2px;position:relative;white-space:nowrap}
+.spss-rn .spss-delfila{position:absolute;top:2px;right:1px;opacity:0}
+.spss-rn:hover .spss-delfila{opacity:1}
+.spss-cell{width:100%;min-width:74px;font-family:var(--m);font-size:13.5px;border:0;background:transparent;
+  color:var(--ink);padding:6px 8px;text-align:right}
+.spss-cell:focus,.spss-vnom:focus{outline:2px solid var(--indigo);outline-offset:-2px;background:var(--indigo-soft)}
+.spss-config{border:1px solid var(--indigo);background:var(--indigo-soft);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.spss-config-hd{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  font-family:var(--u);font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.spss-cfgrow{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:10px}
+.spss-cfgrow2{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
+.spss-cfgrow2 label{display:flex;flex-direction:column;gap:4px;font-family:var(--u);font-size:11px;
+  font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+.spss-chk{display:inline-flex;align-items:center;gap:6px;font-family:var(--u);font-size:13.5px;color:var(--ink);font-weight:500;text-transform:none;letter-spacing:0}
+.spss-hint{font-size:13px;color:var(--ink2);margin:6px 0 0}
+.spss-config .gbtn{margin-top:4px}
+.spss-bienve{border:1px dashed var(--line2);border-radius:10px;padding:16px 18px;color:var(--ink2);font-size:14.5px}
+.spss-bienve p{margin:0 0 10px} .spss-bienve p:last-child{margin-bottom:0}
+.spss-tit{font-family:var(--u);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--ink);
+  background:var(--surface2);border:1px solid var(--line);border-bottom:0;border-radius:7px 7px 0 0;padding:8px 12px;margin-top:18px}
+.spss-out{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+.spss-out th,.spss-out td{border:1px solid var(--line);padding:6px 10px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-family:var(--m)}
+.spss-out thead th{background:var(--sunk);font-family:var(--u);font-size:11.5px;font-weight:700;color:var(--ink2);text-align:right}
+.spss-out th.l{text-align:left;font-family:var(--u);font-weight:600;color:var(--ink2);background:var(--surface2)}
+.spss-out thead th.l{background:var(--sunk)}
+.spss-out td.diag{background:var(--indigo-soft);font-weight:700}
+.spss-out tr.tot th.l,.spss-out tr.tot td{background:var(--sunk);font-weight:700}
+.spss-corr td,.spss-cont td{text-align:center}
+.spss-cont td .obs{display:block;font-weight:600}
+.spss-cont td .esp{display:block;font-family:var(--u);font-size:10.5px;color:var(--ink3)}
+.spss-cont td.tot{font-weight:700;background:var(--sunk)}
+.spss-ruta{font-size:13px;color:var(--ink2);background:var(--ochre-soft);border-left:3px solid var(--ochre);
+  padding:9px 13px;border-radius:0 7px 7px 0;margin:10px 0 0}
+.spss-ruta code{font-family:var(--m);font-size:12px;background:var(--surface);padding:1px 5px;border-radius:4px}
+.spss-mano{margin-top:26px}
+.spss-mano ul{margin:8px 0 0;padding-left:18px}
+.spss-mano li{font-size:14px;color:var(--ink2);line-height:1.55;margin-bottom:7px}
+.spss-mano code{font-family:var(--m);font-size:12.5px;background:var(--surface2);padding:1px 5px;border-radius:4px}
+@media(max-width:640px){ .spss-bar{gap:12px} .spss-casosel,.spss-casosel select{width:100%} }
 </style>
 <script src="config.js"></script>
 <script src="estadistica-cloud.js"></script>
+<script src="estadistica-spss.js"></script>
 </head>
 <body>
 
@@ -417,6 +487,7 @@ tr:last-child td{border-bottom:0}
   <section id="p-temas" class="panel" role="tabpanel"></section>
   <section id="p-formulas" class="panel" role="tabpanel"></section>
   <section id="p-ejercicios" class="panel" role="tabpanel"></section>
+  <section id="p-spss" class="panel" role="tabpanel"></section>
   <section id="p-recordatorio" class="panel" role="tabpanel"></section>
 </main>
 <footer class="footer wrap">
@@ -1259,7 +1330,7 @@ let filtroTema = "all", filtroTipo = "all";
 
 /* ============ NAVEGACIÓN ============ */
 const PANELS = [["calendario","Calendario"],["temas","Temas"],["formulas","Fórmulas"],
-                ["ejercicios","Ejercicios"],["recordatorio","Recordatorio"]];
+                ["ejercicios","Ejercicios"],["spss","Ejercicios SPSS"],["recordatorio","Recordatorio"]];
 $("#tabs").innerHTML = PANELS.map(([id,l],i)=>
   `<button class="tab" role="tab" data-p="${id}" aria-selected="${i===0}">${l}</button>`).join("");
 $("#tabs").addEventListener("click",e=>{
@@ -2528,11 +2599,357 @@ if(perfil && window.Cloud && Cloud.activo){
   }).catch(()=> marcaEstado("error"));
 }
 
+/* ===== app_spss.js ===== */
+/* ============ EJERCICIOS SPSS (emulador) ============ */
+const SPSS_PROCS = [
+  {id:"frecuencias",  nom:"Frecuencias"},
+  {id:"descriptivos", nom:"Descriptivos"},
+  {id:"correlaciones",nom:"Correlaciones"},
+  {id:"cruzada",      nom:"Tablas cruzadas"},
+  {id:"t1m",          nom:"Prueba T (1 muestra)"}
+];
+const SPSS_CASOS = [
+  {id:"perc", tema:"T2", tit:"Percentiles y cuartiles",
+   vars:[{nombre:"X",tipo:"escala"}],
+   filas:[[1],[2],[2],[3],[4],[5],[6],[7],[9]], proc:"frecuencias"},
+  {id:"desc", tema:"T2", tit:"Media, varianza y desviación típica",
+   vars:[{nombre:"X",tipo:"escala"}],
+   filas:[[2],[3],[1],[5],[3],[5],[7],[2],[3]], proc:"descriptivos"},
+  {id:"corr", tema:"T4", tit:"Covarianza → correlación → r²",
+   vars:[{nombre:"X",tipo:"escala"},{nombre:"Y",tipo:"escala"}],
+   filas:[[1,2],[4,3],[0,1],[3,5],[4,3],[2,5],[5,7],[1,2],[1,3]], proc:"correlaciones"},
+  {id:"chi", tema:"T4", tit:"Personalidad × sexo (χ², V de Cramer)",
+   vars:[{nombre:"personalidad",tipo:"nominal"},{nombre:"sexo",tipo:"nominal"},{nombre:"recuento",tipo:"escala"}],
+   filas:[["psicoticismo","varón",209],["psicoticismo","mujer",20],
+          ["cordialidad","varón",116],["cordialidad","mujer",147],
+          ["neuroticismo","varón",52],["neuroticismo","mujer",172]],
+   proc:"cruzada", cfg:{fila:0,col:1,peso:2}},
+  {id:"t1m", tema:"T5", tit:"Prueba T para una muestra (μ₀ = 4)",
+   vars:[{nombre:"X",tipo:"escala"}],
+   filas:[[2],[3],[1],[5],[3],[5],[7],[2],[3]], proc:"t1m", cfg:{var:0,mu:4,conf:"0.95"}}
+];
+
+function spssPorDefecto(){
+  return {vars:[{nombre:"VAR1",tipo:"escala"},{nombre:"VAR2",tipo:"escala"}],
+          filas:[["",""],["",""],["",""],["",""],["",""]]};
+}
+let spss = store.get("ea-spss", null);
+if(!spss || !Array.isArray(spss.vars) || !spss.vars.length) spss = spssPorDefecto();
+let spssProc   = null;    // procedimiento elegido en Analizar
+let spssSalida = "";      // HTML de la última salida
+let spssCfgPre = null;    // configuración sugerida al cargar un caso
+const guardaSpss = ()=> store.set("ea-spss", spss);
+
+/* --- helpers de formato y datos --- */
+const spEsc  = s => String(s).replace(/[&<>"]/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const spStrip0 = s => s.replace(/^(-?)0,/,"$1,");
+const spf    = (x,d)=> (!Number.isFinite(x)) ? "·" : num(x, d==null?3:d);
+const spR    = x => !Number.isFinite(x) ? "·" : spStrip0(num(x,3));
+const spSig  = x => !Number.isFinite(x) ? "·" : (x<0.001 ? "&lt;,001" : spStrip0(num(x,3)));
+const spNom  = c => spEsc(spss.vars[c] && spss.vars[c].nombre || ("VAR"+(c+1)));
+const spColRaw = c => spss.filas.map(f=> f[c]==null ? "" : f[c]);
+const spColNum = c => SPSS.limpiaColumna(spColRaw(c));
+function spParFin(ci,cj){ const a=[],b=[]; spss.filas.forEach(f=>{
+  const x=Number(f[ci]), y=Number(f[cj]); if(Number.isFinite(x)&&Number.isFinite(y)){a.push(x);b.push(y);} });
+  return {a,b}; }
+
+/* --- render principal --- */
+function pintaSPSS(){
+  const P = $("#p-spss"); if(!P) return;
+  const hayMotor = !!window.SPSS;
+  P.innerHTML = `
+    <div class="hd"><div>
+      <div class="eyebrow">Mini-SPSS · datos, procedimientos y salida</div>
+      <h2>Ejercicios SPSS</h2>
+      <p class="lead">Una vista de datos editable y el menú <b>Analizar</b> con los cinco procedimientos
+      del curso. Elige un caso del temario o mete tus datos, pulsa un análisis y lee la salida como en SPSS.</p>
+    </div></div>
+    ${hayMotor ? spssBarHTML() + `
+    <div class="spss-datos">
+      <div class="spss-vhd"><span>Vista de datos</span>
+        <span class="spss-vacc">
+          <button class="chip mini" id="spss-addvar">＋ Variable</button>
+          <button class="chip mini" id="spss-addfila">＋ Fila</button>
+          <button class="chip mini" id="spss-vaciar">Vaciar</button>
+        </span>
+      </div>
+      <div class="scroll">${spssGridHTML()}</div>
+    </div>
+    <div id="spss-config">${spssConfigHTML()}</div>
+    <div id="spss-output">${spssSalida || spssBienvenida()}</div>
+    ${spssManoHTML()}`
+    : `<p class="lead">No se pudo cargar el motor de cálculo (estadistica-spss.js).</p>`}`;
+  if(hayMotor) enlazaSPSS();
+}
+
+function spssBienvenida(){
+  return `<div class="spss-bienve">
+    <p><b>¿Cómo funciona?</b> Igual que en SPSS: 1) tienes tus datos en la <b>vista de datos</b>
+    (cada columna una variable), 2) eliges un análisis en <b>Analizar</b>, 3) marcas las variables y
+    pulsas <b>Ejecutar</b>, y aparece la <b>salida</b>.</p>
+    <p class="spss-hint">Atajo: elige un <b>caso del temario</b> arriba y se cargan los datos y el análisis ya resueltos.</p>
+    <p class="spss-hint">Nota estadística: SPSS calcula la varianza y la desviación típica con
+    <b>n − 1</b> (cuasivarianza). La S² descriptiva del tema 2 divide entre <b>n</b>; por eso aquí verás
+    ambas y pueden diferir.</p>
+  </div>`;
+}
+
+function spssBarHTML(){
+  return `<div class="spss-bar">
+    <label class="spss-casosel">Caso del temario
+      <select id="spss-caso">
+        <option value="">— elige un caso o usa tus datos —</option>
+        ${SPSS_CASOS.map(c=>`<option value="${c.id}">${c.tema} · ${spEsc(c.tit)}</option>`).join("")}
+      </select>
+    </label>
+    <div class="spss-analizar"><span class="spss-lbl">Analizar</span>
+      ${SPSS_PROCS.map(p=>`<button class="spss-proc${spssProc===p.id?" on":""}" data-proc="${p.id}">${p.nom}</button>`).join("")}
+    </div>
+  </div>`;
+}
+
+function spssGridHTML(){
+  const V=spss.vars, F=spss.filas;
+  const tipos=[["escala","Escala"],["ordinal","Ordinal"],["nominal","Nominal"]];
+  let h=`<table class="spss-grid"><thead><tr><th class="spss-rn"></th>`;
+  V.forEach((v,c)=>{ h+=`<th>
+    <input class="spss-vnom" data-c="${c}" value="${spEsc(v.nombre||"")}" maxlength="22" aria-label="Nombre variable ${c+1}">
+    <span class="spss-vtipo-wrap">
+      <select class="spss-vtipo" data-c="${c}">${tipos.map(([k,l])=>`<option value="${k}"${v.tipo===k?" selected":""}>${l}</option>`).join("")}</select>
+      ${V.length>1?`<button class="spss-delcol" data-c="${c}" title="Eliminar variable" aria-label="Eliminar variable">✕</button>`:""}
+    </span></th>`; });
+  h+=`</tr></thead><tbody>`;
+  F.forEach((fila,r)=>{ h+=`<tr><td class="spss-rn">${r+1}${F.length>1?`<button class="spss-delfila" data-r="${r}" title="Eliminar fila" aria-label="Eliminar fila">✕</button>`:""}</td>`;
+    V.forEach((v,c)=>{ h+=`<td><input class="spss-cell" data-r="${r}" data-c="${c}" value="${spEsc(fila[c]==null?"":fila[c])}"></td>`; });
+    h+=`</tr>`; });
+  return h+`</tbody></table>`;
+}
+
+function spssConfigHTML(){
+  const pre = spssCfgPre; spssCfgPre = null;
+  if(!spssProc) return "";
+  const V=spss.vars, P=SPSS_PROCS.find(p=>p.id===spssProc);
+  const opts = (selIdx)=> V.map((v,c)=>`<option value="${c}"${selIdx===c?" selected":""}>${spNom(c)}</option>`).join("");
+  const checks = ()=> V.map((v,c)=>`<label class="spss-chk"><input type="checkbox" class="spss-var" value="${c}" checked> ${spNom(c)}</label>`).join("");
+  let cuerpo="";
+  if(spssProc==="frecuencias") cuerpo=`<div class="spss-cfgrow">${checks()}</div>`;
+  else if(spssProc==="descriptivos") cuerpo=`<div class="spss-cfgrow">${checks()}</div>
+    <label class="spss-chk"><input type="checkbox" id="spss-guardarz"> Mostrar puntuaciones típicas (Z)</label>`;
+  else if(spssProc==="correlaciones") cuerpo=`<div class="spss-cfgrow">${checks()}</div>
+    <p class="spss-hint">Marca dos o más variables cuantitativas.</p>`;
+  else if(spssProc==="cruzada") cuerpo=`<div class="spss-cfgrow2">
+    <label>Filas<select id="spss-fila">${opts(pre?pre.fila:0)}</select></label>
+    <label>Columnas<select id="spss-col">${opts(pre?pre.col:(V.length>1?1:0))}</select></label>
+    <label>Recuento / peso<select id="spss-peso"><option value="">— ninguno —</option>${
+      V.map((v,c)=>`<option value="${c}"${pre&&pre.peso===c?" selected":""}>${spNom(c)}</option>`).join("")}</select></label>
+    </div><p class="spss-hint">Usa dos variables categóricas. Si tus datos son una tabla ya contada, elige la columna de recuento como peso.</p>`;
+  else if(spssProc==="t1m") cuerpo=`<div class="spss-cfgrow2">
+    <label>Variable<select id="spss-t1var">${opts(pre?pre.var:0)}</select></label>
+    <label>Valor de prueba<input type="number" id="spss-t1mu" step="any" value="${pre?pre.mu:0}"></label>
+    <label>Confianza<select id="spss-t1conf">
+      ${["0.90","0.95","0.99"].map(v=>`<option value="${v}"${(pre?pre.conf:"0.95")===v?" selected":""}>${Math.round(+v*100)}%</option>`).join("")}
+    </select></label></div>`;
+  return `<div class="spss-config">
+    <div class="spss-config-hd">Analizar ▸ ${P?P.nom:""}<button class="chip mini" id="spss-cerrarcfg">Cerrar</button></div>
+    ${cuerpo}
+    <button class="gbtn" id="spss-ejecutar">Ejecutar</button>
+    <p class="gerr" id="spss-cfgerr" hidden></p>
+  </div>`;
+}
+
+function spssManoHTML(){
+  return `<div class="card spss-mano">
+    <h3>Lo que en el examen va a mano (no con SPSS)</h3>
+    <ul>
+      <li><b>Puntuaciones z y área bajo la normal</b> (T5): tipificar z = (X − μ)/σ y buscar en la Tabla A. En SPSS sería <code>Transformar ▸ Calcular ▸ FDN(z)</code>, pero en el examen va a mano.</li>
+      <li><b>Probabilidad</b> (T3): espacio muestral, reglas de la suma y probabilidad condicionada, a mano.</li>
+      <li><b>Interpolación fina de percentiles</b> (T2): SPSS la hace; conviene saber la fórmula <span class="f">j = k(n+1)/100</span>.</li>
+    </ul>
+  </div>`;
+}
+
+/* --- interacción --- */
+function spssSelVars(){ return [...document.querySelectorAll(".spss-var:checked")].map(x=>+x.value); }
+function spssCargarCaso(id){
+  const c = SPSS_CASOS.find(x=>x.id===id); if(!c) return;
+  spss = {vars:c.vars.map(v=>({...v})), filas:c.filas.map(f=>f.slice())};
+  spssProc = c.proc || null; spssCfgPre = c.cfg || null; spssSalida = "";
+  guardaSpss(); pintaSPSS();
+  if(spssProc) try{ spssEjecutar(); }catch(e){}
+}
+function enlazaSPSS(){
+  const P=$("#p-spss");
+  const cs=$("#spss-caso"); if(cs) cs.onchange = ()=>{ if(cs.value) spssCargarCaso(cs.value); };
+  P.querySelectorAll(".spss-proc").forEach(b=> b.onclick = ()=>{
+    spssProc = (spssProc===b.dataset.proc) ? null : b.dataset.proc; pintaSPSS(); });
+  const av=$("#spss-addvar"); if(av) av.onclick = ()=>{
+    spss.vars.push({nombre:"VAR"+(spss.vars.length+1),tipo:"escala"});
+    spss.filas.forEach(f=>f.push("")); guardaSpss(); pintaSPSS(); };
+  const af=$("#spss-addfila"); if(af) af.onclick = ()=>{
+    spss.filas.push(spss.vars.map(()=> "")); guardaSpss(); pintaSPSS(); };
+  const vc=$("#spss-vaciar"); if(vc) vc.onclick = ()=>{
+    spss = spssPorDefecto(); spssProc=null; spssSalida=""; guardaSpss(); pintaSPSS(); };
+  P.querySelectorAll(".spss-vnom").forEach(inp=> inp.oninput = ()=>{
+    spss.vars[+inp.dataset.c].nombre = inp.value; guardaSpss(); });
+  P.querySelectorAll(".spss-vtipo").forEach(sel=> sel.onchange = ()=>{
+    spss.vars[+sel.dataset.c].tipo = sel.value; guardaSpss(); });
+  P.querySelectorAll(".spss-cell").forEach(inp=> inp.oninput = ()=>{
+    spss.filas[+inp.dataset.r][+inp.dataset.c] = inp.value; guardaSpss(); });
+  P.querySelectorAll(".spss-delcol").forEach(b=> b.onclick = ()=>{
+    const c=+b.dataset.c; if(spss.vars.length<=1) return;
+    spss.vars.splice(c,1); spss.filas.forEach(f=>f.splice(c,1)); guardaSpss(); pintaSPSS(); });
+  P.querySelectorAll(".spss-delfila").forEach(b=> b.onclick = ()=>{
+    const r=+b.dataset.r; if(spss.filas.length<=1) return;
+    spss.filas.splice(r,1); guardaSpss(); pintaSPSS(); });
+  const cc=$("#spss-cerrarcfg"); if(cc) cc.onclick = ()=>{ spssProc=null; pintaSPSS(); };
+  const ej=$("#spss-ejecutar"); if(ej) ej.onclick = spssEjecutar;
+}
+function spssEjecutar(){
+  const err = m => { const e=$("#spss-cfgerr"); if(e){e.hidden=false;e.textContent=m;} };
+  try{
+    let out="";
+    if(spssProc==="frecuencias"){ const cs=spssSelVars(); if(!cs.length){err("Marca al menos una variable.");return;} out=spssOutFrecuencias(cs); }
+    else if(spssProc==="descriptivos"){ const cs=spssSelVars(); if(!cs.length){err("Marca al menos una variable.");return;} out=spssOutDescriptivos(cs, $("#spss-guardarz") && $("#spss-guardarz").checked); }
+    else if(spssProc==="correlaciones"){ const cs=spssSelVars(); if(cs.length<2){err("Marca al menos dos variables.");return;} out=spssOutCorrel(cs); }
+    else if(spssProc==="cruzada"){ const pv=$("#spss-peso").value; out=spssOutCruzada(+$("#spss-fila").value, +$("#spss-col").value, pv===""?null:+pv); }
+    else if(spssProc==="t1m"){ out=spssOutT1M(+$("#spss-t1var").value, parseFloat($("#spss-t1mu").value)||0, +$("#spss-t1conf").value); }
+    spssSalida = out; const o=$("#spss-output"); if(o){ o.innerHTML = out; o.scrollIntoView({behavior:"smooth",block:"nearest"}); }
+  }catch(e){ err("No se pudo ejecutar: " + e.message); }
+}
+
+/* --- salidas estilo SPSS --- */
+function spssOutFrecuencias(cols){
+  const D = cols.map(c=>({nom:spNom(c), a:spColNum(c), perd:spss.filas.length - spColNum(c).length}));
+  const fila = (l, fn, d)=> `<tr><th class="l">${l}</th>${D.map(o=>`<td>${o.a.length?spf(fn(o.a),d):"·"}</td>`).join("")}</tr>`;
+  const modaTxt = a=>{ const m=SPSS.moda(a); return m.amodal ? "—" : m.modes.map(x=>num(x, Number.isInteger(x)?0:2)).join("; "); };
+  let est = `<div class="spss-tit">Estadísticos</div><div class="scroll"><table class="spss-out">
+    <thead><tr><th class="l"></th>${D.map(o=>`<th>${o.nom}</th>`).join("")}</tr></thead><tbody>
+    <tr><th class="l">N &nbsp;· Válido</th>${D.map(o=>`<td>${o.a.length}</td>`).join("")}</tr>
+    <tr><th class="l">N &nbsp;· Perdidos</th>${D.map(o=>`<td>${o.perd}</td>`).join("")}</tr>
+    ${fila("Media", a=>SPSS.mean(a),3)}
+    ${fila("Mediana", a=>SPSS.median(a),3)}
+    <tr><th class="l">Moda</th>${D.map(o=>`<td>${o.a.length?modaTxt(o.a):"·"}</td>`).join("")}</tr>
+    ${fila("Desv. típica (n−1)", a=>SPSS.sd(a),3)}
+    ${fila("Varianza (n−1)", a=>SPSS.varianza(a),3)}
+    ${fila("Asimetría", a=>SPSS.asimetria(a),3)}
+    ${fila("Error típico de asimetría", a=>SPSS.eeAsimetria(a.length),3)}
+    ${fila("Curtosis", a=>SPSS.curtosis(a),3)}
+    ${fila("Error típico de curtosis", a=>SPSS.eeCurtosis(a.length),3)}
+    ${fila("Mínimo", a=>SPSS.min(a),2)}
+    ${fila("Máximo", a=>SPSS.max(a),2)}
+    ${fila("Percentil 25", a=>SPSS.percentil(a,25),3)}
+    ${fila("Percentil 50", a=>SPSS.percentil(a,50),3)}
+    ${fila("Percentil 75", a=>SPSS.percentil(a,75),3)}
+    </tbody></table></div>`;
+  const tablas = D.map(o=>{ if(!o.a.length) return "";
+    const fr=SPSS.frecuencias(o.a); let acu=0;
+    return `<div class="spss-tit">Frecuencias · ${o.nom}</div><div class="scroll"><table class="spss-out">
+      <thead><tr><th class="l">Valor</th><th>Frecuencia</th><th>Porcentaje</th><th>% acumulado</th></tr></thead><tbody>
+      ${fr.filas.map(x=>`<tr><th class="l">${num(x.valor, Number.isInteger(x.valor)?0:2)}</th>
+        <td>${x.f}</td><td>${spf(x.pct,1)}</td><td>${spf(x.pctAcum,1)}</td></tr>`).join("")}
+      <tr class="tot"><th class="l">Total</th><td>${fr.n}</td><td>${spf(100,1)}</td><td></td></tr>
+      </tbody></table></div>`; }).join("");
+  return est + tablas + spssNota("SPSS: <code>Analizar ▸ Estadísticos descriptivos ▸ Frecuencias ▸ Estadísticos</code> (media, mediana, moda, DT, percentiles, asimetría y curtosis).");
+}
+
+function spssOutDescriptivos(cols, verZ){
+  const D = cols.map(c=>({c, nom:spNom(c), a:spColNum(c)}));
+  let t = `<div class="spss-tit">Estadísticos descriptivos</div><div class="scroll"><table class="spss-out">
+    <thead><tr><th class="l"></th><th>N</th><th>Mínimo</th><th>Máximo</th><th>Media</th><th>Desv. típica</th><th>Varianza</th></tr></thead><tbody>
+    ${D.map(o=>`<tr><th class="l">${o.nom}</th><td>${o.a.length}</td><td>${spf(SPSS.min(o.a),2)}</td>
+      <td>${spf(SPSS.max(o.a),2)}</td><td>${spf(SPSS.mean(o.a),3)}</td><td>${spf(SPSS.sd(o.a),3)}</td><td>${spf(SPSS.varianza(o.a),3)}</td></tr>`).join("")}
+    <tr class="tot"><th class="l">N válido (por lista)</th><td>${Math.min(...D.map(o=>o.a.length))}</td><td colspan="5"></td></tr>
+    </tbody></table></div>`;
+  if(verZ){
+    const cols2 = D.filter(o=>o.a.length>1);
+    t += `<div class="spss-tit">Puntuaciones típicas (Z)</div><div class="scroll"><table class="spss-out">
+      <thead><tr><th class="l">Caso</th>${cols2.map(o=>`<th>Z(${o.nom})</th>`).join("")}</tr></thead><tbody>
+      ${spss.filas.map((f,r)=>`<tr><th class="l">${r+1}</th>${cols2.map(o=>{
+        const zs=SPSS.z(o.a); const val=Number(f[o.c]);
+        // localizar la posición de este caso dentro de la columna filtrada
+        let idx=-1, k=0; for(let i=0;i<spss.filas.length;i++){ const vv=Number(spss.filas[i][o.c]); if(Number.isFinite(vv)){ if(i===r){idx=k;break;} k++; } }
+        return `<td>${idx>=0?spf(zs[idx],2):"·"}</td>`; }).join("")}</tr>`).join("")}
+      </tbody></table></div>`;
+  }
+  return t + spssNota("SPSS: <code>Analizar ▸ Estadísticos descriptivos ▸ Descriptivos</code>. La DT y la varianza usan n−1.");
+}
+
+function spssOutCorrel(cols){
+  const nom = cols.map(spNom);
+  let filas="";
+  cols.forEach((ci,i)=>{
+    const rP=`<tr><th class="l" rowspan="3">${nom[i]}</th><th class="l">Correlación de Pearson</th>${
+      cols.map((cj,j)=>{ if(i===j) return `<td class="diag">1</td>`;
+        const p=SPSS.pearson(spParFin(ci,cj).a, spParFin(ci,cj).b); return `<td>${spR(p.r)}</td>`; }).join("")}</tr>`;
+    const rS=`<tr><th class="l">Sig. (bilateral)</th>${
+      cols.map((cj,j)=>{ if(i===j) return `<td></td>`;
+        const par=spParFin(ci,cj); const p=SPSS.pearson(par.a,par.b); return `<td>${spSig(p.sig)}</td>`; }).join("")}</tr>`;
+    const rN=`<tr><th class="l">N</th>${
+      cols.map((cj,j)=>{ const par=spParFin(ci,cj); return `<td>${par.a.length}</td>`; }).join("")}</tr>`;
+    filas += rP+rS+rN;
+  });
+  return `<div class="spss-tit">Correlaciones</div><div class="scroll"><table class="spss-out spss-corr">
+    <thead><tr><th class="l"></th><th class="l"></th>${nom.map(n=>`<th>${n}</th>`).join("")}</tr></thead>
+    <tbody>${filas}</tbody></table></div>` +
+    spssNota("SPSS: <code>Analizar ▸ Correlacionar ▸ Bivariadas</code> (Pearson, bilateral). Una Sig. &lt; 0,05 indica correlación significativa.");
+}
+
+function spssOutCruzada(ci,cj,cw){
+  if(ci===cj) throw new Error("elige dos variables distintas");
+  const filaV=[], colV=[], pes=[];
+  spss.filas.forEach(f=>{ const rv=f[ci], cv=f[cj];
+    if(rv==null||rv===""||cv==null||cv==="") return;
+    let w=1; if(cw!=null){ w=Number(f[cw]); if(!Number.isFinite(w)) return; }
+    filaV.push(rv); colV.push(cv); pes.push(w); });
+  if(!filaV.length) throw new Error("no hay casos válidos con esas variables");
+  const t = SPSS.tablaCruzada(filaV, colV, cw!=null?pes:null);
+  const nf = spNom(ci), nc = spNom(cj);
+  const cont = `<div class="spss-tit">Tabla de contingencia · ${nf} × ${nc}</div><div class="scroll"><table class="spss-out spss-cont">
+    <thead><tr><th class="l">${nf} \\ ${nc}</th>${t.cCats.map(c=>`<th>${spEsc(c)}</th>`).join("")}<th>Total</th></tr></thead><tbody>
+    ${t.rCats.map((rc,i)=>`<tr><th class="l">${spEsc(rc)}</th>${t.cCats.map((cc,j)=>
+        `<td><span class="obs">${num(t.obs[i][j],0)}</span><span class="esp">esp. ${spf(t.esp[i][j],1)}</span></td>`).join("")}
+      <td class="tot">${num(t.rowT[i],0)}</td></tr>`).join("")}
+    <tr class="tot"><th class="l">Total</th>${t.colT.map(x=>`<td>${num(x,0)}</td>`).join("")}<td>${num(t.n,0)}</td></tr>
+    </tbody></table></div>`;
+  const chi = `<div class="spss-tit">Pruebas de chi-cuadrado</div><div class="scroll"><table class="spss-out">
+    <thead><tr><th class="l"></th><th>Valor</th><th>gl</th><th>Sig. asintótica (bilateral)</th></tr></thead><tbody>
+    <tr><th class="l">Chi-cuadrado de Pearson</th><td>${spf(t.chi2,3)}</td><td>${t.df}</td><td>${spSig(t.sig)}</td></tr>
+    <tr><th class="l">N de casos válidos</th><td>${num(t.n,0)}</td><td></td><td></td></tr>
+    </tbody></table></div>`;
+  const med = `<div class="spss-tit">Medidas simétricas</div><div class="scroll"><table class="spss-out">
+    <thead><tr><th class="l"></th><th>Valor</th><th>N de casos válidos</th></tr></thead><tbody>
+    ${t.es2x2?`<tr><th class="l">Phi</th><td>${spR(t.phi)}</td><td>${num(t.n,0)}</td></tr>`:""}
+    <tr><th class="l">V de Cramer</th><td>${spR(t.cramer)}</td><td>${num(t.n,0)}</td></tr>
+    </tbody></table></div>`;
+  return cont + chi + med +
+    spssNota("SPSS: <code>Analizar ▸ Estadísticos descriptivos ▸ Tablas cruzadas ▸ Estadísticos: Chi-cuadrado, Phi y V de Cramer</code>. En Casillas, marca frecuencias observadas y esperadas.");
+}
+
+function spssOutT1M(cv, mu0, conf){
+  const a = spColNum(cv); if(a.length<2) throw new Error("hacen falta al menos dos casos");
+  const nom = spNom(cv), R = SPSS.tUnaMuestra(a, mu0, conf), pct = Math.round(conf*100);
+  const t1 = `<div class="spss-tit">Estadísticas de muestra única</div><div class="scroll"><table class="spss-out">
+    <thead><tr><th class="l"></th><th>N</th><th>Media</th><th>Desv. típica</th><th>Media de error estándar</th></tr></thead><tbody>
+    <tr><th class="l">${nom}</th><td>${R.n}</td><td>${spf(R.media,3)}</td><td>${spf(R.sd,3)}</td><td>${spf(R.ee,3)}</td></tr>
+    </tbody></table></div>`;
+  const t2 = `<div class="spss-tit">Prueba de muestra única · Valor de prueba = ${num(mu0, Number.isInteger(mu0)?0:2)}</div><div class="scroll"><table class="spss-out">
+    <thead><tr><th class="l"></th><th>t</th><th>gl</th><th>Sig. (bilateral)</th><th>Diferencia de medias</th><th>IC ${pct}% inferior</th><th>IC ${pct}% superior</th></tr></thead><tbody>
+    <tr><th class="l">${nom}</th><td>${spf(R.t,3)}</td><td>${R.df}</td><td>${spSig(R.sig)}</td><td>${spf(R.dif,3)}</td><td>${spf(R.ic[0],3)}</td><td>${spf(R.ic[1],3)}</td></tr>
+    </tbody></table></div>`;
+  const dec = R.sig<0.05
+    ? `Como Sig. = ${spSig(R.sig)} &lt; 0,05, se <b>rechaza</b> H₀: la media difiere de ${num(mu0, Number.isInteger(mu0)?0:2)}.`
+    : `Como Sig. = ${spSig(R.sig)} ≥ 0,05, se <b>mantiene</b> H₀: no hay evidencia de que la media difiera de ${num(mu0, Number.isInteger(mu0)?0:2)}.`;
+  return t1 + t2 + spssNota("SPSS: <code>Analizar ▸ Comparar medias ▸ Prueba T para una muestra</code>. " + dec);
+}
+
+const spssNota = txt => `<p class="spss-ruta">${txt}</p>`;
+
 cabecera();
 pintaCalendario();
 pintaTemas();
 pintaFormulas();
 pintaEjercicios();
+pintaSPSS();
 pintaRecordatorio();
 
 </script>
