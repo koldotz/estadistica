@@ -96,6 +96,22 @@ button{font-family:var(--u);cursor:pointer}
 .gbtn:disabled{opacity:.6}
 .gerr{font-size:13.5px;color:var(--brick);margin:0 0 10px}
 .gcard code{font-family:var(--m);font-size:13px;background:var(--surface2);padding:1px 5px;border-radius:4px}
+.perfiles{display:flex;flex-direction:column;gap:7px;margin:4px 0 8px}
+.perfil-pick{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
+  padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink)}
+.perfil-pick:hover{border-color:var(--indigo)}
+.perfil-pick.actual{border-color:var(--indigo);background:var(--indigo-soft)}
+.perfil-pick:disabled{opacity:.6}
+.perfil-pick .pi-ava{display:flex;align-items:center;justify-content:center;width:30px;height:30px;
+  border-radius:50%;background:var(--indigo);color:var(--paper);font-family:var(--m);font-weight:600;font-size:14px;flex:none}
+.perfil-pick .pi-nom{font-size:15px;font-weight:500;flex:1;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.perfil-pick .pi-cur{font-family:var(--u);font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--indigo)}
+.pvacio{font-size:14px;color:var(--ink3);margin:2px 0 8px}
+.gate-o{font-family:var(--u);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink3);text-align:center;margin:12px 0 2px}
+.gate-pie{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 
 /* ---------- notas ---------- */
 .nota-box{border-top:1px dashed var(--line2);padding-top:6px;margin-top:2px}
@@ -1993,6 +2009,14 @@ let perfil     = store.get("ea-perfil", null);       // {id, nombre}
 let notas      = store.get("ea-notas", {});          // "sesion:2026-09-07" | "tema:T2"
 let simulacros = store.get("ea-sim", []);
 let sincro     = "local";                            // local | ok | guardando | error
+let perfilesGuardados = store.get("ea-perfiles", []);// [{id,nombre}] recordados en este dispositivo
+function recuerdaPerfil(p){
+  if(!p || !p.id) return;
+  perfilesGuardados = perfilesGuardados.filter(x=> x.id!==p.id && x.nombre!==p.nombre);
+  perfilesGuardados.unshift({id:p.id, nombre:p.nombre});
+  store.set("ea-perfiles", perfilesGuardados);
+}
+if(perfil && perfil.id) recuerdaPerfil(perfil);
 
 const nube = ()=> !!(window.Cloud && Cloud.activo && perfil && perfil.id);
 function marcaEstado(s){ sincro = s; pintaBotonPerfil(); }
@@ -2021,20 +2045,64 @@ function syncNota(ambito, clave, texto){
 }
 
 /* --- puerta de perfil --- */
+/* Carga un perfil ya elegido: descarga su estado de la nube y refresca la app.
+   subirSiVacio=true solo al crear/entrar por nombre, para adjuntar a ese perfil
+   el progreso local de este dispositivo si el perfil aún no tiene datos. */
+async function cargarPerfil(p, subirSiVacio){
+  perfil = {id:p.id, nombre:p.nombre};
+  store.set("ea-perfil", perfil);
+  recuerdaPerfil(perfil);
+  marcaEstado("guardando");
+  const d = await Cloud.descargar(perfil.id);
+  const vacio = !d.progreso.length && !d.respuestas.length && !d.notas.length && !d.simulacros.length;
+  if(vacio && subirSiVacio){
+    await Cloud.subirTodo(perfil.id, {hechos, respu, notas});
+  }else{
+    hechos = {}; d.progreso.forEach(r=>{ if(r.hecho) hechos[r.fecha]=true; });
+    respu = {}; d.respuestas.forEach(r=>{
+      respu[r.ejercicio] = r.respuesta==="true" ? true
+        : r.respuesta==="false" ? false : Number(r.respuesta); });
+    notas = {}; d.notas.forEach(r=> notas[r.ambito+":"+r.clave] = r.texto);
+    simulacros = d.simulacros || [];
+    store.set("ea-dias",hechos); store.set("ea-ej",respu);
+    store.set("ea-notas",notas); store.set("ea-sim",simulacros);
+  }
+  marcaEstado("ok");
+  cabecera(); pintaCalendario(); pintaTemas(); pintaEjercicios();
+}
+
+function listaPerfilesHTML(perfiles){
+  if(!perfiles.length) return `<p class="pvacio">Aún no hay perfiles guardados. Crea el primero abajo.</p>`;
+  return perfiles.map(p=>{
+    const nom = String(p.nombre||"");
+    const ini = (nom.trim()[0]||"?").toUpperCase();
+    const act = perfil && perfil.id===p.id;
+    return `<button class="perfil-pick${act?" actual":""}" data-id="${p.id}"
+      data-nombre="${nom.replace(/"/g,"&quot;")}">
+      <span class="pi-ava">${ini.replace(/</g,"&lt;")}</span>
+      <span class="pi-nom">${nom.replace(/</g,"&lt;")}</span>
+      ${act?`<span class="pi-cur">activo</span>`:""}
+    </button>`;
+  }).join("");
+}
+
 function abrirGate(){
   const hay = window.Cloud && Cloud.activo;
   $("#gate").hidden = false;
   $("#gate-cuerpo").innerHTML = hay ? `
-    <p class="lead" style="font-size:15px;margin-top:0">Escribe tu nombre y el progreso viajará
-    contigo entre el ordenador y el móvil. Sin contraseña: el nombre es la llave.</p>
+    <p class="lead" style="font-size:15px;margin-top:0">Elige un perfil o crea uno nuevo. Sin
+    contraseña: el nombre es la llave, escríbelo igual en el móvil y en el ordenador.</p>
+    <div class="perfiles" id="perfiles-lista">${listaPerfilesHTML(perfilesGuardados)}</div>
+    <div class="gate-o">o crea uno nuevo</div>
     <div class="gform">
-      <input id="gate-nom" type="text" placeholder="Tu nombre" autocomplete="off"
-        value="${perfil?perfil.nombre:""}" maxlength="40">
-      <button class="gbtn" id="gate-ok">Entrar</button>
+      <input id="gate-nom" type="text" placeholder="Nombre nuevo…" autocomplete="off" maxlength="40">
+      <button class="gbtn" id="gate-ok">Crear / entrar</button>
     </div>
     <p class="gerr" id="gate-err" hidden></p>
-    <button class="chip" id="gate-local">Seguir solo en este dispositivo</button>
-    ${perfil?`<button class="chip" id="gate-salir">Cerrar sesión de ${perfil.nombre}</button>`:""}`
+    <div class="gate-pie">
+      <button class="chip" id="gate-local">Seguir solo en este dispositivo</button>
+      ${perfil?`<button class="chip" id="gate-salir">Cerrar sesión de ${String(perfil.nombre||"").replace(/</g,"&lt;")}</button>`:""}
+    </div>`
   : `
     <p class="lead" style="font-size:15px;margin-top:0">La sincronización todavía no está configurada.
     Rellena <code>config.js</code> con la URL y la clave anon de tu proyecto de Supabase y
@@ -2042,44 +2110,52 @@ function abrirGate(){
     <p style="font-size:14px;color:var(--ink2)">Mientras tanto la app funciona igual, pero el
     progreso se guarda solo en este navegador.</p>
     <button class="chip" id="gate-local">Entendido</button>`;
+
   const cerrar = ()=> $("#gate").hidden = true;
+  const err = m => { const e=$("#gate-err"); if(e){ e.hidden=false; e.textContent=m; } };
   const bl = $("#gate-local"); if(bl) bl.onclick = cerrar;
   const bs = $("#gate-salir");
   if(bs) bs.onclick = ()=>{ perfil=null; store.set("ea-perfil",null); marcaEstado("local"); cerrar(); };
-  const bo = $("#gate-ok");
-  if(bo){
-    const go = async ()=>{
-      const n = $("#gate-nom").value.trim();
-      if(!n){ $("#gate-err").hidden=false; $("#gate-err").textContent="Escribe un nombre."; return; }
-      bo.disabled = true; bo.textContent = "Entrando…";
-      try{
-        const p = await Cloud.entrar(n);
-        perfil = {id:p.id, nombre:p.nombre}; store.set("ea-perfil", perfil);
-        const d = await Cloud.descargar(perfil.id);
-        const vacio = !d.progreso.length && !d.respuestas.length && !d.notas.length && !d.simulacros.length;
-        if(vacio){
-          await Cloud.subirTodo(perfil.id, {hechos, respu, notas});
-        }else{
-          hechos = {}; d.progreso.forEach(r=>{ if(r.hecho) hechos[r.fecha]=true; });
-          respu = {}; d.respuestas.forEach(r=>{
-            respu[r.ejercicio] = r.respuesta==="true" ? true
-              : r.respuesta==="false" ? false : Number(r.respuesta); });
-          notas = {}; d.notas.forEach(r=> notas[r.ambito+":"+r.clave] = r.texto);
-          simulacros = d.simulacros || [];
-          store.set("ea-dias",hechos); store.set("ea-ej",respu);
-          store.set("ea-notas",notas); store.set("ea-sim",simulacros);
-        }
-        marcaEstado("ok"); cerrar();
-        cabecera(); pintaCalendario(); pintaTemas(); pintaEjercicios();
-      }catch(e){
-        bo.disabled=false; bo.textContent="Entrar";
-        $("#gate-err").hidden=false;
-        $("#gate-err").textContent = "No se pudo conectar: " + e.message;
-      }
-    };
-    bo.onclick = go;
-    $("#gate-nom").onkeydown = e=>{ if(e.key==="Enter") go(); };
+  if(!hay) return;
+
+  /* Elegir un perfil ya guardado: solo carga sus datos, sin subir nada. */
+  function enlazaLista(){
+    $("#perfiles-lista").querySelectorAll(".perfil-pick").forEach(b=> b.onclick = async ()=>{
+      if(perfil && perfil.id===b.dataset.id){ cerrar(); return; }
+      b.disabled = true;
+      try{ await cargarPerfil({id:b.dataset.id, nombre:b.dataset.nombre}, false); cerrar(); }
+      catch(e){ b.disabled=false; err("No se pudo cargar: " + e.message); }
+    });
   }
+  enlazaLista();
+
+  /* Crear o entrar por nombre nuevo. */
+  const bo = $("#gate-ok");
+  const crear = async ()=>{
+    const n = $("#gate-nom").value.trim();
+    if(!n){ err("Escribe un nombre."); return; }
+    bo.disabled = true; bo.textContent = "Entrando…";
+    try{
+      const p = await Cloud.entrar(n);
+      await cargarPerfil(p, true);
+      cerrar();
+    }catch(e){
+      bo.disabled=false; bo.textContent="Crear / entrar";
+      err("No se pudo conectar: " + e.message);
+    }
+  };
+  bo.onclick = crear;
+  $("#gate-nom").onkeydown = e=>{ if(e.key==="Enter") crear(); };
+
+  /* Trae del servidor todos los perfiles y los une a los recordados en local. */
+  Cloud.listarPerfiles().then(remotos=>{
+    const map = new Map();
+    perfilesGuardados.forEach(p=> map.set(p.id, {id:p.id, nombre:p.nombre}));
+    (remotos||[]).forEach(p=> map.set(p.id, {id:p.id, nombre:p.nombre}));
+    const union = [...map.values()].sort((a,b)=> String(a.nombre).localeCompare(String(b.nombre),"es"));
+    const cont = $("#perfiles-lista");
+    if(cont && !$("#gate").hidden){ cont.innerHTML = listaPerfilesHTML(union); enlazaLista(); }
+  }).catch(()=>{});
 }
 
 /* --- notas --- */

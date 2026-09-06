@@ -40,6 +40,8 @@
       const nuevo = await upsert("perfiles", {nombre:n}, "nombre");
       return nuevo[0];
     },
+    /* Lista todos los perfiles para poder elegir entre ellos. */
+    listarPerfiles: () => sel("perfiles", "select=id,nombre&order=nombre.asc"),
     async descargar(perfilId){
       const p = "perfil_id=eq." + perfilId;
       const [progreso, respuestas, notas, simulacros] = await Promise.all([
