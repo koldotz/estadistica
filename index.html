@@ -381,6 +381,33 @@ tr:last-child td{border-bottom:0}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+/* ---------- portada (primera página) ---------- */
+#portada{position:fixed;inset:0;z-index:200;overflow:auto;display:flex;align-items:center;justify-content:center;
+  padding:44px 20px;transition:opacity .45s ease;
+  background:radial-gradient(1100px 560px at 50% -8%, var(--indigo-soft), transparent 62%),
+    radial-gradient(820px 460px at 88% 112%, var(--ochre-soft), transparent 58%), var(--paper)}
+#portada.fuera{opacity:0;pointer-events:none}
+.pt-inner{width:100%;max-width:780px;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center}
+.pt-brand{font-family:var(--d);font-weight:700;font-size:clamp(21px,4.4vw,29px);letter-spacing:-.01em;color:var(--ink)}
+.pt-brand em{font-style:normal;font-weight:500;color:var(--ochre)}
+.pt-collage{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px}
+.pt-foto{margin:0;background:#fdfdfb;padding:9px 9px 12px;border-radius:5px;border:1px solid rgba(0,0,0,.07);
+  box-shadow:0 16px 34px -16px rgba(0,0,0,.55)}
+.pt-foto img{display:block;height:clamp(148px,25vh,208px);width:auto;max-width:100%;border-radius:2px}
+.pt-foto.f1{transform:rotate(-3deg)}
+.pt-foto.f2{transform:rotate(2.5deg)}
+.pt-foto.f3{transform:rotate(-1.5deg)}
+.pt-empezar{font-family:var(--u);font-size:18px;font-weight:700;letter-spacing:.16em;color:var(--paper);
+  background:var(--indigo);border:0;border-radius:13px;padding:17px 52px;
+  box-shadow:0 14px 30px -12px var(--indigo);transition:transform .15s ease, box-shadow .15s ease}
+.pt-empezar:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px var(--indigo)}
+.pt-empezar:active{transform:translateY(0)}
+.pt-cita{margin:0;max-width:54ch}
+.pt-cita blockquote{margin:0;font-family:var(--b);font-style:italic;font-size:clamp(15px,2.5vw,18.5px);
+  line-height:1.55;color:var(--ink2)}
+.pt-cita figcaption{margin-top:9px;font-family:var(--u);font-size:12.5px;font-weight:600;letter-spacing:.05em;color:var(--ink3)}
+@media(max-width:520px){ .pt-foto img{height:132px} .pt-inner{gap:24px} }
+
 /* ---------- ejercicios: ampliación de la respuesta ---------- */
 .ejmas{margin-top:12px;border-top:1px dashed var(--line2);padding-top:12px}
 .ejmas-h{font-family:var(--u);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
@@ -502,6 +529,17 @@ tr:last-child td{border-bottom:0}
 </head>
 <body>
 
+<section id="portada" role="dialog" aria-label="Bienvenida a Estadística Armairua">
+  <div class="pt-inner">
+    <div class="pt-brand">Estadística <em>armairua</em></div>
+    <div class="pt-collage">
+      <figure class="pt-foto f1"><img src="fotos/musicos.jpg" alt="Tocando música juntos" loading="eager"></figure>
+      <figure class="pt-foto f2"><img src="fotos/cajon.jpg" alt="Jugando con el cajón" loading="eager"></figure>
+    </div>
+    <button class="pt-empezar" id="pt-empezar">EMPEZAR</button>
+    <figure class="pt-cita" id="pt-cita"></figure>
+  </div>
+</section>
 
 <header class="top">
   <div class="wrap">
@@ -3139,6 +3177,24 @@ function spssOutT1M(cv, mu0, conf){
 
 const spssNota = txt => `<p class="spss-ruta">${txt}</p>`;
 
+/* ===== portada ===== */
+/* Citas de familia de proverbia.net/frases-de-familia (se excluyen las de Juan Pablo II). */
+const CITAS = [
+  {t:"Una familia feliz no es sino un paraíso anticipado.", a:"Sir John Bowring"},
+  {t:"La paz y la armonía constituyen la mayor riqueza de la familia.", a:"Benjamin Franklin"},
+  {t:"Los únicos goces puros y sin mezcla de tristeza que le han sido dados sobre la tierra al hombre, son los goces de familia.", a:"Giuseppe Mazzini"},
+  {t:"El lugar donde nacen los niños y mueren los hombres, donde la libertad y el amor florecen, no es una oficina ni un comercio ni una fábrica. Ahí veo yo la importancia de la familia.", a:"Gilbert Keith Chesterton"},
+  {t:"Una casa será fuerte e indestructible cuando esté sostenida por estas cuatro columnas: padre valiente, madre prudente, hijo obediente, hermano complaciente.", a:"Confucio"}
+];
+function pintaPortada(){
+  const el = $("#pt-cita");
+  if(el){ const c = CITAS[Math.floor(Math.random()*CITAS.length)];
+    el.innerHTML = `<blockquote>“${c.t}”</blockquote><figcaption>— ${c.a}</figcaption>`; }
+  const b = $("#pt-empezar");
+  if(b) b.onclick = ()=>{ const p=$("#portada"); if(!p) return;
+    p.classList.add("fuera"); setTimeout(()=>{ p.hidden = true; }, 460); };
+}
+
 cabecera();
 pintaCalendario();
 pintaTemas();
@@ -3146,6 +3202,7 @@ pintaFormulas();
 pintaEjercicios();
 pintaSPSS();
 pintaRecordatorio();
+pintaPortada();
 
 </script>
 
