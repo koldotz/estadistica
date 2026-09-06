@@ -381,6 +381,43 @@ tr:last-child td{border-bottom:0}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+/* ---------- calendario: panel lateral "hoy" ---------- */
+.cal-wrap{display:grid;grid-template-columns:1fr;gap:22px;align-items:start}
+.cal-weeks{min-width:0;display:flex;flex-direction:column;gap:26px}
+.cal-hoy{order:-1}
+@media(min-width:1100px){
+  .cal-wrap{grid-template-columns:minmax(0,1fr) 344px}
+  .cal-hoy{order:0;position:sticky;top:72px;align-self:start}
+  .cal-weeks .days{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .cal-weeks .week{grid-template-columns:140px 1fr}
+}
+.cal-hoy-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:20px 20px 18px;box-shadow:0 12px 34px -20px rgba(0,0,0,.45)}
+.ch-kick{display:flex;align-items:center;gap:8px;font-family:var(--u);font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--indigo)}
+.ch-dot{width:8px;height:8px;border-radius:50%;background:var(--ochre);box-shadow:0 0 0 4px var(--ochre-soft);flex:none}
+.ch-fecha{font-family:var(--m);font-size:12.5px;color:var(--ink3);margin-top:9px;letter-spacing:.02em}
+.ch-badge{display:inline-block;margin-top:11px;font-family:var(--m);font-size:11px;font-weight:600;
+  color:var(--ochre);background:var(--ochre-soft);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
+.ch-tit{font-size:20px;line-height:1.25;margin:11px 0 0}
+.ch-label{font-family:var(--u);font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink3);margin:17px 0 6px}
+.ch-cont{font-size:14.5px;color:var(--ink2);line-height:1.55;margin:0}
+.ch-tarea{font-family:var(--u);font-size:12.5px;color:var(--ink2);background:var(--sunk);border-radius:8px;
+  padding:9px 11px;margin-top:12px;line-height:1.5}
+.ch-tarea b{color:var(--ochre);font-weight:600}
+.ch-links{display:flex;flex-direction:column;gap:7px}
+.ch-links button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;
+  font-family:var(--u);font-size:13.5px;font-weight:600;color:var(--ink);background:var(--surface);
+  border:1px solid var(--line2);border-radius:9px;padding:10px 12px}
+.ch-links button:hover{border-color:var(--indigo);background:var(--indigo-soft);color:var(--indigo)}
+.ch-arr{color:var(--ink3);font-size:13px}
+.ch-links button:hover .ch-arr{color:var(--indigo)}
+.ch-ver{margin-top:12px;width:100%;font-family:var(--u);font-size:12.5px;font-weight:600;color:var(--ink2);
+  background:none;border:1px dashed var(--line2);border-radius:9px;padding:9px}
+.ch-ver:hover{border-color:var(--indigo);color:var(--indigo)}
+.day.prox{box-shadow:0 0 0 2px var(--indigo)}
+
 /* ---------- ejercicios SPSS (emulador) ---------- */
 .spss-bar{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end;justify-content:space-between;
   padding:14px 16px;background:var(--sunk);border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
@@ -1333,11 +1370,14 @@ const PANELS = [["calendario","Calendario"],["temas","Temas"],["formulas","Fórm
                 ["ejercicios","Ejercicios"],["spss","Ejercicios SPSS"],["recordatorio","Recordatorio"]];
 $("#tabs").innerHTML = PANELS.map(([id,l],i)=>
   `<button class="tab" role="tab" data-p="${id}" aria-selected="${i===0}">${l}</button>`).join("");
+function activaPanel(id){
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.p===id));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on", p.id==="p-"+id));
+  window.scrollTo({top:0,behavior:"auto"});
+}
 $("#tabs").addEventListener("click",e=>{
   const b = e.target.closest(".tab"); if(!b) return;
-  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t===b));
-  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on", p.id==="p-"+b.dataset.p));
-  window.scrollTo({top:0,behavior:"auto"});
+  activaPanel(b.dataset.p);
 });
 
 /* ============ CABECERA ============ */
@@ -1355,7 +1395,17 @@ function cabecera(){
 }
 
 /* ============ CALENDARIO ============ */
+let calDestacado = null;   // fecha (f) del día de hoy o la próxima sesión
+function diaDeHoy(){
+  const hoyT = HOY.getTime();
+  const exact = CAL.find(d=>fecha(d.f).getTime()===hoyT);
+  if(exact) return {d:exact, estado:"hoy"};
+  const fut = CAL.filter(d=>fecha(d.f).getTime()>hoyT);
+  if(fut.length) return {d:fut[0], estado:"prox"};
+  return {d:null, estado:"fin"};
+}
 function pintaCalendario(){
+  calDestacado = (diaDeHoy().d || {}).f || null;
   const semanas = [];
   CAL.forEach(d=>{
     const f = fecha(d.f);
@@ -1386,12 +1436,23 @@ function pintaCalendario(){
         <button class="chip" id="hoy-btn">Ir a hoy</button>
         <button class="chip" id="reset-cal">Reiniciar marcas</button>
       </div>
-    </div>${html}`;
+    </div>
+    <div class="cal-wrap">
+      <div class="cal-weeks">${html}</div>
+      <aside class="cal-hoy" id="cal-hoy">${panelHoyHTML()}</aside>
+    </div>`;
   $("#hoy-btn").onclick = ()=>{
-    const el = document.querySelector(".day.hoy") || document.querySelector(".day");
+    const el = document.querySelector(".day.hoy") || document.querySelector(".day.prox") || document.querySelector(".day");
     if(el) el.scrollIntoView({block:"center",behavior:"smooth"});
   };
   $("#reset-cal").onclick = ()=>{ hechos={}; store.set("ea-dias",hechos); pintaCalendario(); cabecera(); };
+  $("#cal-hoy").querySelectorAll("[data-goto]").forEach(b=>
+    b.onclick = ()=> calNavega(b.dataset.goto, b.dataset.tema||null));
+  const verBtn = $("#cal-hoy .ch-ver");
+  if(verBtn) verBtn.onclick = ()=>{
+    const el = document.querySelector(".day.hoy") || document.querySelector(".day.prox") || document.querySelector(".day");
+    if(el) el.scrollIntoView({block:"center",behavior:"smooth"});
+  };
   $("#p-calendario").addEventListener("click",e=>{
     const t = e.target.closest(".tick"); if(!t) return;
     const k = t.dataset.f;
@@ -1407,7 +1468,8 @@ function pintaCalendario(){
 function tarjetaDia(d){
   const f = fecha(d.f);
   const esHoy = f.getTime()===HOY.getTime();
-  const cls = ["day", d.tipo, hechos[d.f]?"done":"", esHoy?"hoy":""].filter(Boolean).join(" ");
+  const esProx = !esHoy && d.f===calDestacado;
+  const cls = ["day", d.tipo, hechos[d.f]?"done":"", esHoy?"hoy":"", esProx?"prox":""].filter(Boolean).join(" ");
   const marcable = d.tipo==="sesion"||d.tipo==="repaso";
   return `<article class="${cls}">
     <div class="dtop">
@@ -1420,6 +1482,64 @@ function tarjetaDia(d){
     ${d.tarea?`<div class="dtarea">${d.tarea}</div>`:""}
     ${marcable?notaHTML("sesion", d.f, "Qué te ha costado, qué dejas pendiente…"):""}
   </article>`;
+}
+/* panel lateral: el día de hoy con enlaces directos a cada apartado */
+function panelHoyHTML(){
+  const {d, estado} = diaDeHoy();
+  if(!d) return `<div class="cal-hoy-card">
+    <div class="ch-kick"><span class="ch-dot"></span>Curso terminado</div>
+    <h3 class="ch-tit">¡Suerte en el examen!</h3>
+    <p class="ch-cont">El plan ha llegado a su fin. Repasa el formulario y el recordatorio.</p>
+    <div class="ch-label">Ir directo a</div>
+    <div class="ch-links">
+      <button data-goto="recordatorio">Recordatorio<span class="ch-arr">↗</span></button>
+      <button data-goto="formulas">Fórmulas<span class="ch-arr">↗</span></button>
+    </div></div>`;
+  const f = fecha(d.f);
+  const wk = Math.floor((f - fecha("2026-09-07"))/(7*864e5)) + 1;
+  const tema = /^T[1-5]$/.test(d.tema) ? d.tema : null;
+  const T = tema ? TEMAS.find(t=>t.id===tema) : null;
+  const kick = estado==="hoy" ? "Hoy es tu sesión" : "Próxima sesión";
+  const fechaTxt = `${DIA[f.getDay()]} ${f.getDate()} ${MES[f.getMonth()]}`.toUpperCase();
+  const festivo = d.tipo==="festivo";
+  const links = [
+    ["temario",    tema?`Temario · Tema ${T.n}`:"Temario"],
+    ["formulas",   tema?`Fórmulas del tema ${T.n}`:"Fórmulas"],
+    ["ejercicios", tema?`Ejercicios del tema ${T.n}`:"Ejercicios"],
+    ["spss",       "Ejercicios SPSS"],
+    ["recordatorio","Recordatorio"]
+  ];
+  return `<div class="cal-hoy-card">
+    <div class="ch-kick"><span class="ch-dot"></span>${kick}</div>
+    <div class="ch-fecha">${fechaTxt} · Semana ${String(wk).padStart(2,"0")}</div>
+    ${(d.tema!=="—"&&d.tema!=="EX")?`<span class="ch-badge">${tema?("Tema "+T.n):d.tema}</span>`:""}
+    <h3 class="ch-tit">${d.tit}</h3>
+    <div class="ch-label">${festivo?"Sobre el día":"Conceptos del día a estudiar"}</div>
+    <p class="ch-cont">${d.cont}</p>
+    ${d.tarea?`<div class="ch-tarea"><b>Tarea</b> ${d.tarea}</div>`:""}
+    <div class="ch-label">Ir directo a</div>
+    <div class="ch-links">
+      ${links.map(([g,l])=>`<button data-goto="${g}"${tema?` data-tema="${tema}"`:""}>${l}<span class="ch-arr">↗</span></button>`).join("")}
+    </div>
+    <button class="ch-ver">Ver el día en el calendario</button>
+  </div>`;
+}
+/* enlaces del panel: cambia de pestaña y deja el apartado en el tema del día */
+function calNavega(goto, tema){
+  if(goto==="temario"){
+    if(tema){ temaSel=tema; store.set("ea-tema",temaSel); pintaTemas(); }
+    activaPanel("temas");
+  }else if(goto==="formulas"){
+    filtroF="all"; pintaFormulas(); activaPanel("formulas");
+    if(tema) setTimeout(()=>{ const el=document.querySelector('.bloque[data-tema="'+tema+'"]');
+      if(el) el.scrollIntoView({block:"start",behavior:"smooth"}); }, 40);
+  }else if(goto==="ejercicios"){
+    filtroTema = tema||"all"; filtroTipo="all"; pintaEjercicios(); activaPanel("ejercicios");
+  }else if(goto==="spss"){
+    activaPanel("spss");
+  }else if(goto==="recordatorio"){
+    activaPanel("recordatorio");
+  }
 }
 
 /* ============ TEMAS ============ */
@@ -2014,7 +2134,7 @@ function pintaFormulas(){
       ${BLOQUES.map(b=>`<button class="chip" data-f="${b.id}" aria-pressed="${filtroF===b.id}">${b.n}</button>`).join("")}
     </div>
     ${grupos.map(b=>`
-      <div class="bloque">
+      <div class="bloque" data-tema="${b.tema}">
         <div class="bloque-hd">
           <h3>${b.n}</h3>
           <span class="bchip">Tema ${TEMAS.find(t=>t.id===b.tema).n} · ${TEMAS.find(t=>t.id===b.tema).tit}</span>
