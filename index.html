@@ -1661,7 +1661,10 @@ function pintaCalendario(){
     const el = document.querySelector(".day.hoy") || document.querySelector(".day.prox") || document.querySelector(".day");
     if(el) el.scrollIntoView({block:"center",behavior:"smooth"});
   };
-  $("#p-calendario").addEventListener("click",e=>{
+  // .onclick (reemplaza) en vez de addEventListener (acumula): pintaCalendario puede
+  // ejecutarse varias veces (init + sincronización en la nube) y, si se apilaran listeners,
+  // un clic ejecutaría el toggle dos veces y la marca no cuajaría.
+  $("#p-calendario").onclick = e=>{
     const t = e.target.closest(".tick"); if(!t) return;
     const k = t.dataset.f;
     hechos[k] = !hechos[k];
@@ -1671,7 +1674,7 @@ function pintaCalendario(){
     t.closest(".day").classList.toggle("done", !!hechos[k]);
     cabecera();
     syncProgreso(k, hechos[k]);
-  });
+  };
 }
 function tarjetaDia(d){
   const f = fecha(d.f);
