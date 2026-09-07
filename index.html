@@ -277,6 +277,101 @@ button{font-family:var(--u);cursor:pointer}
   text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
 .tool code{font-family:var(--m);font-size:13px;color:var(--ink);word-break:break-word}
 
+/* ---------- índice del temario ---------- */
+.sec{scroll-margin-top:78px}
+.indice{background:var(--surface);border:1px solid var(--line);border-radius:11px;
+  padding:0 18px;margin-bottom:26px;box-shadow:var(--shadow)}
+.indice>summary{font-family:var(--u);font-size:12px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink2);padding:14px 2px;cursor:pointer;list-style:none;
+  display:flex;align-items:center;gap:8px}
+.indice>summary::-webkit-details-marker{display:none}
+.indice>summary::before{content:"☰";color:var(--ochre);font-size:14px}
+.indice>summary .cnt{margin-left:auto;font-family:var(--m);font-size:11px;color:var(--ink3);
+  letter-spacing:0;text-transform:none}
+.indice[open]>summary{border-bottom:1px solid var(--line)}
+.ix-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 22px;
+  padding:14px 0 18px}
+.ix-tema{break-inside:avoid;margin-bottom:6px}
+.ix-th{display:block;width:100%;text-align:left;background:none;border:0;padding:6px 6px 5px;
+  font-family:var(--d);font-size:14.5px;font-weight:600;color:var(--ink);border-radius:6px}
+.ix-th:hover{background:var(--surface2)}
+.ix-th .ixn{font-family:var(--m);font-size:11px;font-weight:600;color:var(--ochre);
+  letter-spacing:.06em;margin-right:6px}
+.ix-cur .ix-th{color:var(--ochre)}
+.ix-secs{list-style:none;margin:0 0 8px;padding:0 0 0 4px}
+.ix-sec{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;
+  padding:4px 8px;border-radius:6px;font-family:var(--u);font-size:13px;color:var(--ink2);
+  border-left:2px solid var(--line);cursor:pointer}
+.ix-sec:hover{background:var(--surface2);color:var(--ink);border-left-color:var(--ochre)}
+.ix-sec .ixnum{font-family:var(--m);font-size:11px;color:var(--ink3);flex:none}
+.ix-sec .ixmas{margin-left:auto;font-size:10px;color:var(--ochre)}
+.secej{background:var(--ochre-soft);border-left:3px solid var(--ochre);border-radius:0 8px 8px 0;
+  padding:11px 15px;margin:14px 0 2px;font-size:14.5px}
+.secej b{color:var(--ochre);font-family:var(--u);font-size:12px;letter-spacing:.03em;
+  text-transform:uppercase;margin-right:5px}
+
+/* ---------- compendio del temario ---------- */
+.comp-intro{border-top:2px solid var(--ink);padding-top:16px;margin-top:6px}
+.comp{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  border-top:3px solid var(--ochre);padding:22px 22px 20px;margin:0 0 16px;box-shadow:var(--shadow)}
+.comp-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.comp-tag{font-family:var(--m);font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ochre-soft);color:var(--ochre)}
+.comp h4{font-size:19px;margin-bottom:6px}
+.comp .enun{font-size:15px;color:var(--ink2);border-bottom:1px solid var(--line);padding-bottom:13px}
+.comp-idea{background:var(--indigo-soft);border-left:3px solid var(--indigo);border-radius:0 8px 8px 0;
+  padding:11px 15px;margin:14px 0 2px;font-size:14.5px}
+.comp-idea b{color:var(--indigo)}
+.comp-fx{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px;align-items:center}
+.comp-fx .lab{font-family:var(--u);font-size:11px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink3)}
+.fxlink{font-family:var(--u);font-size:12.5px;font-weight:500;border:1px solid var(--line2);
+  background:var(--surface);color:var(--indigo);border-radius:99px;padding:5px 12px;cursor:pointer}
+.fxlink:hover{background:var(--indigo-soft);border-color:var(--indigo)}
+.comp-sol{margin-top:6px}
+.comp-sol>summary{font-family:var(--u);font-size:12.5px;font-weight:600;color:var(--ochre);
+  cursor:pointer;list-style:none;padding:8px 0 4px}
+.comp-sol>summary::-webkit-details-marker{display:none}
+.comp-sol>summary::before{content:"▸ ";color:var(--ochre)}
+.comp-sol[open]>summary::before{content:"▾ "}
+
+/* ---------- interpretación visual (recordatorio) ---------- */
+.interp{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:18px 20px;margin-bottom:16px}
+.interp h3{font-size:18px;margin-bottom:4px}
+.interp .sub{font-family:var(--u);font-size:12.5px;color:var(--ink3);margin-bottom:14px}
+.interp .fbadge{font-family:var(--m);font-size:13px;font-weight:600;background:var(--surface2);
+  color:var(--ink);border-radius:6px;padding:4px 10px;display:inline-block;margin-bottom:12px}
+.pbar{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line2);
+  font-family:var(--u);font-size:12.5px;font-weight:600}
+.pbar span{display:grid;place-items:center;color:#fff;white-space:nowrap;padding:0 6px}
+.pbar .exp{background:var(--sage)}
+.pbar .noexp{background:var(--ink3)}
+.pbar-lab{display:flex;justify-content:space-between;font-family:var(--u);font-size:11.5px;
+  color:var(--ink3);margin-top:5px}
+.interp-caso{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px}
+.interp-caso .pt{font-family:var(--u);font-size:11px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.interp-caso .lee{background:var(--sage-soft);border:1px solid var(--sage);border-radius:8px;
+  padding:11px 14px;margin-top:11px;font-size:14px}
+.interp-caso .lee b{color:var(--sage)}
+.interp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;align-items:start}
+.nline{position:relative;height:52px;margin:14px 2px 6px}
+.nline .track{position:absolute;top:22px;left:0;right:0;height:6px;border-radius:99px;background:var(--surface2)}
+.nline .band{position:absolute;top:22px;height:6px;background:var(--indigo-soft)}
+.nline .band.crit{background:var(--brick-soft)}
+.nline .band.ok{background:var(--sage-soft)}
+.nline .tick{position:absolute;top:16px;width:1px;height:18px;background:var(--line2)}
+.nline .ticklab{position:absolute;top:32px;transform:translateX(-50%);font-family:var(--m);
+  font-size:10.5px;color:var(--ink3);white-space:nowrap}
+.nline .mark{position:absolute;top:13px;width:14px;height:14px;border-radius:50%;
+  background:var(--brick);border:2px solid var(--surface);transform:translateX(-50%);z-index:2}
+.nline .marklab{position:absolute;top:-3px;transform:translateX(-50%);font-family:var(--m);
+  font-size:11px;font-weight:600;color:var(--brick);white-space:nowrap}
+.cvrow{display:flex;align-items:center;gap:10px;margin:7px 0}
+.cvrow .cvname{font-family:var(--u);font-size:12.5px;width:78px;flex:none;color:var(--ink2)}
+.cvrow .cvbar{height:20px;border-radius:5px;background:var(--indigo);min-width:2px}
+.cvrow .cvval{font-family:var(--m);font-size:12.5px;font-weight:600}
+
 /* ---------- fórmulas ---------- */
 .bloque{margin:0 0 40px}
 .bloque-hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
@@ -314,8 +409,8 @@ dl.fsim dd{margin:0;font-size:14px;color:var(--ink2);line-height:1.45}
 .ztab table{font-size:12.5px}
 .ztab th,.ztab td{padding:4px 7px;white-space:nowrap}
 .ztab thead th,.ztab tr:first-child th{position:sticky;top:0;background:var(--surface);z-index:1}
-.gitem.flash{animation:fl 2.2s ease-out}
-@keyframes fl{0%,55%{background:var(--ochre-soft)}100%{background:var(--surface)}}
+.gitem.flash,.sec.flash,.fcard.flash{animation:fl 2.2s ease-out;border-radius:8px}
+@keyframes fl{0%,55%{background:var(--ochre-soft)}100%{background:transparent}}
 @media(max-width:720px){.fbody{grid-template-columns:1fr}.fcol+.fcol{border-left:0;border-top:1px solid var(--line)}}
 
 /* ---------- ejercicios ---------- */
@@ -1456,6 +1551,7 @@ function normCdf(z){
   return z>0?1-p:p;
 }
 const num = (x,n)=> x.toFixed(n).replace(".",",");
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")  .replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
 
 /* ============ ESTADO ============ */
 let hechos = store.get("ea-dias",{});
@@ -1654,9 +1750,139 @@ function calNavega(goto, tema){
   }
 }
 
+/* ============ AMPLIACIÓN DE TEORÍA ============
+   Un "Otro ejemplo" interpretativo por epígrafe, indexado por "Tx|Título de la sección".
+   No toca la teoría original: se renderiza debajo de cada sección. */
+const SECPLUS = {
+"T1|Para qué sirve la estadística en psicología":"En un estudio sobre el insomnio: <b>describir</b> es medir cuántas horas duerme cada persona y su nivel de ansiedad y ver si van juntos; <b>explicar</b> es averiguar si la ansiedad <i>causa</i> el insomnio; <b>predecir</b> es estimar quién lo desarrollará el año que viene. El mismo fenómeno, tres preguntas distintas.",
+"T1|El ciclo deducción / inducción":"Un clínico observa que varios pacientes con depresión duermen mal y formula una teoría general (<b>inducción</b>: de los casos a la teoría). De esa teoría deduce que un paciente nuevo con depresión dormirá mal, y lo comprueba (<b>deducción</b>: de la teoría al caso).",
+"T1|Nivel teórico-conceptual":"«El ejercicio mejora el ánimo» cumple las seis condiciones: es clara, no se contradice, se puede falsar midiendo el ánimo antes y después, explica los hechos, no inventa mecanismos de más y encaja con lo conocido. «Una energía invisible mejora el ánimo» fallaría en contraste empírico y parsimonia.",
+"T1|Nivel técnico-metodológico: población y muestra":"La nota media de <i>todos</i> los universitarios españoles (μ) es un <b>parámetro</b>: existe, pero no lo conocemos. La media de los 200 que encuestas (x̄) es un <b>estadístico</b>: la calculas y cambia con cada muestra. Por eso μ se estima con x̄.",
+"T1|Escalas de medida":"El <b>tiempo de reacción</b> es de razón (0 ms = ausencia, y cabe decir «el doble de rápido»); el <b>CI</b> es de intervalo (no hay un CI cero real y 140 no es «el doble de listo» que 70); <b>oro/plata/bronce</b> es ordinal (hay orden, pero la distancia entre puestos no es igual).",
+"T1|Rol funcional de las variables":"«¿Mejora la cafeína la memoria?»: <b>VI</b> = dosis de cafeína (la manipulas), <b>VD</b> = aciertos en un test de memoria (los mides), <b>VE</b> = horas de sueño de cada participante (si no la controlas, podría explicar el resultado en lugar de la cafeína).",
+"T1|Diseños y validez":"Estudiar la agresividad metiendo a niños en un laboratorio con actores da mucha <b>validez interna</b> (controlas todo) pero poca <b>externa</b> (un laboratorio no es un patio de colegio). Observarlos en el patio real invierte la balanza: gana naturalidad, pierde control.",
+"T1|Nivel estadístico-analítico y matriz de datos":"Si encuestas a 50 personas sobre edad, sexo y horas de sueño, la matriz tiene <b>50 filas</b> (una por persona) y <b>3 columnas</b> (una por variable). En SPSS, la fila 12 es el sujeto 12; la columna «sueño» guarda su respuesta.",
+
+"T2|Qué describe el análisis descriptivo":"Dos clases con media de 5: en una todos sacan entre 4 y 6 (poca dispersión, el 5 representa bien); en la otra media clase saca 0 y media 10 (misma media, pero el 5 no representa a nadie). Por eso un centro sin su dispersión engaña.",
+"T2|Variables categóricas: tabla de frecuencias":"De 40 pacientes clasificados por grupo sanguíneo, si 20 son del grupo O su frecuencia relativa es 20/40 = <b>0,50</b> y su porcentaje el <b>50 %</b>. En el diagrama de sectores le tocaría medio círculo.",
+"T2|Frecuencias acumuladas":"En «nivel de estudios» ordenado (primaria &lt; ESO &lt; bachillerato &lt; universidad), la frecuencia acumulada hasta bachillerato responde «¿cuántos tienen bachillerato <i>o menos</i>?». En «color favorito» (nominal) esa suma no significa nada: no hay un «hasta».",
+"T2|Cuantiles: percentiles y cuartiles":"Si tu hijo está en el <b>percentil 90</b> de altura, mide más que el 90 % de los niños de su edad. No es que mida 90 cm ni que haya acertado el 90 %: es una <i>posición</i> dentro del grupo.",
+"T2|Tendencia central":"En una oficina donde casi todos cobran 1.500 € y el jefe 20.000 €, la <b>media</b> (~3.000 €) sugiere sueldos que nadie tiene; la <b>mediana</b> (1.500 €) describe al empleado típico. Con asimetría fuerte, manda la mediana.",
+"T2|Propiedades ante transformaciones lineales":"Subes 1 punto a todos los exámenes (Y = X + 1): la media sube 1 pero la desviación típica <b>no cambia</b> (todos suben igual, siguen igual de separados). Si en vez de sumar multiplicas las notas por 2, la varianza se multiplica por <b>4</b> (por 2²).",
+"T2|Dispersión":"Grupo A: peso medio 70 kg, DT 7 kg → CV = 10 %. Grupo B: reacción media 300 ms, DT 60 ms → CV = 20 %. Aunque kilos y milisegundos no se puedan comparar, el <b>CV</b> dice que B es el doble de heterogéneo.",
+"T2|Forma: asimetría y curtosis":"Los ingresos de un país tienen <b>asimetría positiva</b>: muchísima gente con ingresos bajos-medios y una cola larga de pocos muy ricos a la derecha. Por eso la media de ingresos siempre queda por encima de la mediana.",
+"T2|Gráficos cuantitativos":"Con las notas 5, 6, 6, 7, 8, 9 el <b>tallo y hojas</b> conserva los valores exactos (tallo 0 → hojas 5 6 6 7 8 9); el <b>histograma</b> solo diría «6 casos entre 5 y 10». La <b>caja</b> resaltaría la mediana y el 50 % central.",
+
+"T3|Por qué la probabilidad sostiene la inferencia":"Que un dado saque un 4 no se puede predecir en una tirada, pero sabemos que a la larga sale 1 de cada 6 veces. La estadística usa esa regularidad: no sabe qué le pasará a <i>un</i> paciente, pero sí qué proporción mejora con un tratamiento.",
+"T3|Experimento aleatorio, espacio muestral y suceso":"Lanzar dos monedas: el espacio muestral es E = {CC, CX, XC, XX}, cuatro resultados posibles. «Sacar al menos una cara» es un suceso <b>compuesto</b>: {CC, CX, XC}, tres de los cuatro.",
+"T3|Operaciones con sucesos":"Con un dado, A = «par» = {2,4,6} y B = «mayor que 3» = {4,5,6}: <b>A∪B</b> = {2,4,5,6} (par <i>o</i> mayor que 3), <b>A∩B</b> = {4,6} (par <i>y</i> mayor que 3), <b>A−B</b> = {2}.",
+"T3|Cálculo de la probabilidad":"Sacar un corazón de una baraja de 40 cartas: hay 10 corazones, así que P = 10/40 = <b>0,25</b>. Si te sale mayor que 1, has puesto la división al revés (posibles entre favorables).",
+"T3|Regla de la suma y regla del producto":"«Rey <i>o</i> corazón» en 40 cartas: no son excluyentes (existe el rey de corazones), así que P = 4/40 + 10/40 − 1/40 = <b>13/40</b>. Si olvidas restar el rey de corazones, lo cuentas dos veces.",
+"T3|Probabilidad condicionada e independencia":"P(enfermo | test positivo) puede ser muy distinta de P(enfermo): el test cambia lo que sabemos. Si fueran <b>independientes</b> (el test no informara), P(enfermo | positivo) = P(enfermo) y el test sería inútil.",
+"T3|De la probabilidad al contraste de hipótesis":"Lanzas una moneda 10 veces y salen 10 caras. Bajo H₀ «la moneda es justa» eso es rarísimo (p muy baja), así que rechazas H₀. La probabilidad es la <b>vara de medir</b> lo sorprendente que es tu resultado si H₀ fuera cierta.",
+
+"T4|Asociación y causalidad":"El número de bomberos en un incendio correlaciona con los daños, pero no los causa: una <b>tercera variable</b> (el tamaño del fuego) provoca ambas cosas a la vez. Asociación hay; causalidad, no.",
+"T4|Covarianza":"Horas de estudio y nota suelen tener covarianza <b>positiva</b> (a más horas, más nota). Pero si mides el estudio en minutos en vez de horas, el número cambia por completo aunque la relación sea la misma: por eso la covarianza sola no es interpretable.",
+"T4|Correlación de Pearson":"Una <b>r = −0,85</b> entre horas de móvil y horas de sueño: relación fuerte y negativa (más móvil, menos sueño). El signo da la dirección; el 0,85 (cerca de 1) da la fuerza. Y es comparable entre estudios porque siempre va de −1 a +1.",
+"T4|Coeficiente de determinación":"Si la r entre motivación y rendimiento es 0,40, entonces <b>r² = 0,16</b>: la motivación explica el 16 % de las diferencias de rendimiento; el 84 % restante son otras cosas. Elevar al cuadrado siempre encoge la cifra.",
+"T4|Dos variables categóricas: ji-cuadrado":"Cruzas «fuma (sí/no)» con «tiene tos (sí/no)». Si fumar y toser fueran independientes, esperarías unas frecuencias concretas; <b>χ²</b> mide cuánto se apartan las observadas de esas esperadas. Como no está acotado, luego das <b>φ</b> para saber si la relación es fuerte o débil.",
+"T4|Una cuantitativa y una categórica":"Comparar el estrés (cuantitativo) entre tres tratamientos (categórico): un <b>diagrama de cajas</b> por grupo enseña de un vistazo qué tratamiento tiene la mediana más baja y cuál dispersa más.",
+
+"T5|Qué es inferir":"No puedes preguntar la altura a <i>todos</i> los españoles (parámetro μ, desconocido). Mides a 1.000 (estadístico x̄) y desde ahí estimas μ o pones a prueba si «μ = 175». Eso es <b>inferir</b>: ir de la muestra a la población.",
+"T5|Muestreo y representatividad":"Una encuesta con 50.000 respuestas voluntarias por internet puede estar más sesgada que una de 1.000 elegidas al azar: el <b>tamaño no arregla un muestreo malo</b>. Responden los más motivados, no un reflejo de la población.",
+"T5|La distribución normal y la tipificación":"Un CI de 130 en una N(100, 15): z = (130 − 100)/15 = <b>2</b>. Está 2 desviaciones típicas por encima; por la regla del 95 %, solo un ~2,5 % de la gente lo supera. La z pone cualquier escala en el mismo lenguaje.",
+"T5|Distribución muestral de un estadístico":"Si sacas muchas muestras de 100 personas y anotas la media de cada una, esas medias forman su <i>propia</i> distribución. El <b>error muestral</b> de una media concreta es lo que se aparta de μ: con μ = 300 y una media de 333, el error es +33.",
+"T5|Teorema Central del Límite":"Los ingresos <b>no</b> son normales (son asimétricos), pero si tomas medias de muestras de 100 personas, esas medias sí se reparten en forma de campana. Por eso puedes usar la normal para la media aunque la variable original no lo sea.",
+"T5|Estimación puntual y error estándar":"Con σ = 20 y n = 100, EE = 20/√100 = <b>2</b>. Si subes a n = 400, EE = 20/√400 = <b>1</b>: para reducir el error a la mitad hay que <b>cuadruplicar</b> la muestra, no doblarla.",
+"T5|Intervalos de confianza":"Un IC del 95 % para la media de sueño que da <b>[6,8; 7,4] horas</b> significa que el método, repetido muchas veces, atrapa la media real el 95 % de las veces. Cuanto mayor es n, más estrecho (y más preciso) es el intervalo.",
+"T5|Contraste de hipótesis":"Quieres ver si un curso sube la nota media por encima de 5 (H₀: μ = 5; H₁: μ &gt; 5, unilateral derecho). Calculas el estadístico y, si cae en la zona crítica, rechazas H₀. Si no, la <b>mantienes</b>: nunca se «acepta» H₀.",
+"T5|Aciertos, errores y relevancia":"Un fármaco baja la tensión 0,3 mmHg con n = 100.000: sale «significativo» (p &lt; 0,05) pero es clínicamente irrelevante. <b>Significación estadística ≠ importancia práctica</b>; con muestras enormes casi todo sale significativo."
+};
+
+/* ============ COMPENDIO DEL TEMARIO ============
+   Casos que cruzan varios temas: teoría + cálculo, con enlace a las fórmulas. */
+const COMPENDIO = [
+{ id:"c-notas-z",
+  tit:"Comparar dos notas de escalas distintas",
+  temas:["T2","T5"],
+  enun:"Ana saca un 7 en Matemáticas, donde su grupo tiene μ = 5 y σ = 1, y un 6 en Lengua, donde el grupo tiene μ = 4 y σ = 2. ¿En qué asignatura destaca más respecto a sus compañeros y qué percentil ocupa aproximadamente en cada una?",
+  idea:"La nota bruta no basta para comparar: cada asignatura tiene su propio centro (media, tema 2) y su propia dispersión (desviación típica, tema 2). Para ponerlas en la misma métrica hay que <b>tipificar</b> (tema 5). La puntuación z dice a cuántas desviaciones típicas del promedio está cada nota, y la Tabla A de la normal la traduce en percentil.",
+  pasos:[
+    {t:"Tipificar la nota de Matemáticas",c:'<span class="f">z = (X − μ)/σ = (7 − 5)/1 = <b>2,00</b></span> Ana está 2 desviaciones típicas por encima de la media de su grupo.'},
+    {t:"Tipificar la nota de Lengua",c:'<span class="f">z = (6 − 4)/2 = <b>1,00</b></span> Aquí está solo 1 desviación típica por encima, aunque la nota bruta (6) también sea alta.'},
+    {t:"Comparar en la misma métrica",c:'2,00 &gt; 1,00: <b>destaca más en Matemáticas</b>. La clave está en la dispersión: en Mates el grupo va muy apretado (σ = 1), así que sacar un 7 es raro; en Lengua el grupo está más disperso (σ = 2) y un 6 es menos excepcional.'},
+    {t:"De z a percentil con la Tabla A",c:'La tabla da el área a la izquierda: z = 2,00 → 0,9772; z = 1,00 → 0,8413. Es decir <b>≈ P98</b> en Matemáticas y <b>≈ P84</b> en Lengua.'}
+  ],
+  res:"z(Mat) = 2,00 ≈ P98 · z(Len) = 1,00 ≈ P84 → Ana destaca más en Matemáticas.",
+  fx:["Puntuación típica"],
+  spss:"Transformar ▸ Calcular variable con (X − media)/DT, o Analizar ▸ Descriptivos marcando «Guardar valores tipificados».",
+  excel:"=(7-5)/1 y =(6-4)/2 · para el percentil, =DISTR.NORM.ESTAND.N(2) = 0,9772.",
+  trampa:"Comparar 7 con 6 y concluir que domina Matemáticas «porque la nota es mayor». Sin tipificar no se puede: una misma nota bruta vale más cuanto menor es la dispersión del grupo."
+},
+{ id:"c-chi-2x2",
+  tit:"De la tabla de contingencia a la fuerza de la asociación",
+  temas:["T4"],
+  enun:"En 100 personas se cruza «hace deporte» con «duerme bien». De los 50 que hacen deporte, 40 duermen bien; de los 50 que no, solo 20. ¿Hay asociación entre deporte y sueño, y cómo de fuerte es?",
+  idea:"El ji-cuadrado (χ²) solo dice <b>si</b> hay asociación, comparando las frecuencias observadas con las que esperaríamos si el deporte y el sueño fueran independientes. Pero χ² no está acotado, así que no mide la fuerza: para eso, en una tabla 2×2, se calcula <b>φ</b> (phi), que se lee como una correlación (0 a 1). Todo el caso es tema 4 encadenado: frecuencias esperadas → χ² → φ.",
+  pasos:[
+    {t:"Montar la tabla observada",c:'<div class="scroll"><table><tr><th></th><th>Duerme bien</th><th>Duerme mal</th><th>Total</th></tr><tr><td>Deporte sí</td><td class="n">40</td><td class="n">10</td><td class="n">50</td></tr><tr><td>Deporte no</td><td class="n">20</td><td class="n">30</td><td class="n">50</td></tr><tr><td><b>Total</b></td><td class="n">60</td><td class="n">40</td><td class="n">100</td></tr></table></div>'},
+    {t:"Frecuencias esperadas",c:'<span class="f">e = (total fila · total columna) / n</span> Las cuatro celdas: e = (50·60)/100 = <b>30</b>, (50·40)/100 = <b>20</b>, (50·60)/100 = <b>30</b> y (50·40)/100 = <b>20</b>. Si no hubiera relación, esperaríamos 30 deportistas durmiendo bien, no 40.'},
+    {t:"Ji-cuadrado, celda a celda",c:'<span class="f">χ² = Σ (o − e)² / e</span> = (40−30)²/30 + (10−20)²/20 + (20−30)²/30 + (30−20)²/20 = 3,33 + 5 + 3,33 + 5 = <b>16,67</b>.'},
+    {t:"Fuerza con phi",c:'<span class="f">φ = √(χ²/n) = √(16,67/100) = √0,1667 = <b>0,41</b></span> Se lee como una correlación: 0,41 es una asociación de magnitud media-alta.'},
+    {t:"Interpretar",c:'Sí hay asociación (χ² grande respecto a sus grados de libertad) y además es <b>notable</b> (φ ≈ 0,41): quien hace deporte duerme bien mucho más a menudo. Nunca darías solo el χ² = 16,67, porque ese número no dice si la relación es fuerte o trivial.'}
+  ],
+  res:"esperadas 30/20/30/20 · χ² = 16,67 · φ = 0,41 → asociación real y de fuerza media-alta.",
+  fx:["Ji-cuadrado de Pearson","Phi de Pearson"],
+  spss:"Analizar ▸ Estadísticos descriptivos ▸ Tablas cruzadas ▸ Estadísticos: Chi-cuadrado y Phi. Pondera antes por el recuento.",
+  excel:"χ²: =PRUEBA.CHI.CUAD(rango_observadas; rango_esperadas) da la significación; φ = RAIZ(16,67/100).",
+  trampa:"Quedarse en «χ² = 16,67, luego hay relación». χ² depende de n y no está acotado: sin φ (o V de Cramer si la tabla fuera mayor de 2×2) no sabes si la asociación es fuerte o insignificante."
+},
+{ id:"c-ic-contraste",
+  tit:"El intervalo de confianza y el contraste dicen lo mismo",
+  temas:["T5"],
+  enun:"En una muestra de n = 100 la media de un test es x̄ = 25, con varianza poblacional conocida σ² = 16. Con α = 0,05: construye el intervalo de confianza para μ y, a la vez, contrasta si la media poblacional podría ser 24.",
+  idea:"Estimar por intervalo y contrastar una hipótesis son dos caras de lo mismo (tema 5). El <b>IC</b> es el rango de valores de μ compatibles con la muestra; el <b>contraste</b> pregunta por un valor concreto. Regla de oro: si el valor hipotético cae <i>fuera</i> del IC, el contraste bilateral lo rechaza. Ambos usan σ conocida, así que z = 1,96.",
+  pasos:[
+    {t:"Error estándar",c:'σ = √16 = 4, así que <span class="f">EE = σ/√n = 4/√100 = 4/10 = <b>0,4</b></span>'},
+    {t:"Intervalo de confianza",c:'<span class="f">IC = x̄ ∓ z · EE = 25 ∓ 1,96 · 0,4 = 25 ∓ 0,784</span> → <b>[24,216 ; 25,784]</b>. Son los valores de μ compatibles con la muestra al 95 %.'},
+    {t:"Contraste sobre μ = 24",c:'<span class="f">Z = (x̄ − μ₀)/EE = (25 − 24)/0,4 = <b>2,5</b></span> Como |2,5| &gt; 1,96, cae en la zona crítica: se <b>rechaza</b> H₀.'},
+    {t:"Comprobar la coherencia",c:'El valor 24 <b>no</b> está dentro de [24,216 ; 25,784], y por eso el contraste lo rechaza. Las dos herramientas coinciden: el intervalo «ve» que 24 queda fuera, y el contraste lo confirma con Z = 2,5.'}
+  ],
+  res:"EE = 0,4 · IC 95 % = [24,216 ; 25,784] · Z = 2,5 &gt; 1,96 → se rechaza μ = 24 (coherente con que 24 quede fuera del IC).",
+  fx:["IC para la media, varianza poblacional conocida","Contraste de una media, varianza poblacional conocida"],
+  spss:"Analizar ▸ Comparar medias ▸ Prueba T para una muestra (valor de prueba = 24) da la t y el IC; con σ conocida el criterio es z.",
+  excel:"IC: =25 - 1,96*4/10 y =25 + 1,96*4/10 · Z: =(25-24)/(4/10).",
+  trampa:"Creer que IC y contraste pueden contradecirse. Con el mismo α y contraste bilateral son equivalentes: rechazar H₀ ⇔ el valor hipotético queda fuera del IC."
+}
+];
+function compHTML(c){
+  const tags = c.temas.map(id=>{const T=TEMAS.find(t=>t.id===id);
+    return `<span class="comp-tag">Tema ${T.n}</span>`;}).join("");
+  return `<article class="comp">
+    <div class="comp-tags">${tags}</div>
+    <h4>${c.tit}</h4>
+    <p class="enun">${c.enun}</p>
+    <div class="comp-idea"><b>Cómo enfocarlo</b> — ${c.idea}</div>
+    <details class="comp-sol">
+      <summary>Ver solución paso a paso</summary>
+      <ol class="pasos">${c.pasos.map(p=>`
+        <li><div><div class="pt">${p.t}</div><div class="pc">${p.c}</div></div></li>`).join("")}</ol>
+      <div class="resu"><b>Resultado</b>${c.res}</div>
+      ${c.trampa?`<div class="nota alerta" style="margin-top:12px"><b>Trampa</b> · ${c.trampa}</div>`:""}
+      ${(c.spss||c.excel)?`<div class="tools">
+        ${c.spss?`<div class="tool"><div class="lab">En SPSS</div><code>${c.spss}</code></div>`:""}
+        ${c.excel?`<div class="tool"><div class="lab">En Excel</div><code>${c.excel}</code></div>`:""}
+      </div>`:""}
+    </details>
+    <div class="comp-fx"><span class="lab">Fórmulas que usa</span>
+      ${c.fx.map(n=>`<button class="fxlink" data-fx="${n}">${n} ↗</button>`).join("")}</div>
+  </article>`;
+}
+
 /* ============ TEMAS ============ */
 function pintaTemas(){
   const t = TEMAS.find(x=>x.id===temaSel) || TEMAS[0];
+  const totalSecs = TEMAS.reduce((a,x)=>a+x.secs.length,0);
   $("#p-temas").innerHTML = `
     <div class="hd">
       <div>
@@ -1670,9 +1896,19 @@ function pintaTemas(){
         <span class="t">${x.tit}</span>
         <span class="s">${x.sub}</span>
       </button>`).join("")}</div>
+    <details class="indice" open>
+      <summary>Índice del temario<span class="cnt">5 temas · ${totalSecs} epígrafes</span></summary>
+      <nav class="ix-nav">${TEMAS.map(x=>`
+        <div class="ix-tema${x.id===t.id?" ix-cur":""}">
+          <button class="ix-th" data-ixt="${x.id}"><span class="ixn">T${x.n}</span>${x.tit}</button>
+          <ol class="ix-secs">${x.secs.map((s,i)=>`
+            <li><button class="ix-sec" data-ixt="${x.id}" data-ixs="${i}"><span class="ixnum">${s.num}</span>${s.t}</button></li>`).join("")}</ol>
+        </div>`).join("")}</nav>
+    </details>
     <div class="nota-tema">${notaHTML("tema", t.id, "Tus apuntes del tema "+t.n+": dudas, reglas propias, lo que no te entra…")}</div>
     <div class="prose">
-      ${t.secs.map(s=>`<section class="sec"><h3><span class="num">${s.num}</span>${s.t}</h3>${s.c}</section>`).join("")}
+      ${t.secs.map((s,i)=>{const ej=SECPLUS[t.id+"|"+s.t];
+        return `<section class="sec" id="sec-${t.id}-${i}"><h3><span class="num">${s.num}</span>${s.t}</h3>${s.c}${ej?`<div class="secej"><b>Otro ejemplo</b>${ej}</div>`:""}</section>`;}).join("")}
     </div>
     <div class="hd" style="margin-top:14px"><div>
       <div class="eyebrow">Glosario del tema ${t.n}</div>
@@ -1698,10 +1934,31 @@ function pintaTemas(){
           <div class="tool"><div class="lab">En SPSS</div><code>${c.spss}</code></div>
           <div class="tool"><div class="lab">En Excel</div><code>${c.excel}</code></div>
         </div>
-      </article>`).join("")}`;
+      </article>`).join("")}
+    <div class="hd comp-intro" style="margin-top:40px"><div>
+      <div class="eyebrow">Compendio del temario · casos que cruzan varios temas</div>
+      <h2 style="font-size:23px">Resuélvelo tú, luego abre la solución</h2>
+      <p class="lead" style="max-width:68ch">Problemas de examen que mezclan la teoría y el cálculo de más de un
+      tema. Intenta resolverlos con el formulario a mano; cada caso enlaza con la fórmula que necesitas.</p>
+    </div></div>
+    ${COMPENDIO.map(c=>compHTML(c)).join("")}`;
   $("#p-temas").querySelectorAll(".tcard").forEach(b=>b.onclick=()=>{
     temaSel = b.dataset.t; store.set("ea-tema",temaSel); pintaTemas(); window.scrollTo({top:0});
   });
+  $("#p-temas").querySelectorAll(".ix-th").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.ixt;
+    if(id!==temaSel){ temaSel=id; store.set("ea-tema",temaSel); pintaTemas(); }
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+  $("#p-temas").querySelectorAll(".ix-sec").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.ixt, i=b.dataset.ixs;
+    const go=()=>{ const el=document.getElementById("sec-"+id+"-"+i);
+      if(el){ el.scrollIntoView({block:"start",behavior:"smooth"});
+        el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),2200); } };
+    if(id!==temaSel){ temaSel=id; store.set("ea-tema",temaSel); pintaTemas(); requestAnimationFrame(go); }
+    else go();
+  });
+  $("#p-temas").querySelectorAll(".fxlink").forEach(b=>b.onclick=()=>irAFormula(b.dataset.fx));
 }
 
 /* ============ EJERCICIOS ============ */
@@ -2263,7 +2520,7 @@ function pintaFormulas(){
 }
 function fichaF(f){
   const t = TEMAS.find(x=>x.id===f.tm);
-  return `<article class="fcard">
+  return `<article class="fcard" id="f-${slug(f.nom)}">
     <header class="fhd">
       <div class="fmeta">${t.id} · epígrafe ${f.ep}</div>
       <h4>${f.nom}</h4>
@@ -2291,6 +2548,15 @@ function fichaF(f){
     </div>
     <div class="nota alerta fojo"><b>Ojo</b> · ${f.ojo}</div>
   </article>`;
+}
+/* salta a la pestaña Fórmulas y resalta una fórmula concreta por su nombre */
+function irAFormula(nom){
+  filtroF="all"; pintaFormulas(); activaPanel("formulas");
+  requestAnimationFrame(()=>{
+    const el = document.getElementById("f-"+slug(nom));
+    if(el){ el.scrollIntoView({block:"center",behavior:"smooth"});
+      el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),2200); }
+  });
 }
 /* salta al glosario del tema y resalta el término */
 function irAGlosario(temaId, termino){
@@ -2594,6 +2860,82 @@ function pintaTestsExternos(){
 
 /* ===== app_rec.js ===== */
 /* ============ RECORDATORIO ============ */
+/* ============ INTERPRETACIÓN VISUAL DE FÓRMULAS (recordatorio) ============ */
+function nline(min,max,ticks,mark,bands){
+  const pct=v=>Math.max(0,Math.min(100,((v-min)/(max-min))*100));
+  let h=`<div class="nline"><div class="track"></div>`;
+  (bands||[]).forEach(b=>{const a=pct(b.a),z=pct(b.b);
+    h+=`<div class="band ${b.cls||""}" style="left:${a}%;width:${z-a}%"></div>`;});
+  (ticks||[]).forEach(t=>{const p=pct(t.v);
+    h+=`<div class="tick" style="left:${p}%"></div><div class="ticklab" style="left:${p}%">${t.l}</div>`;});
+  if(mark){const p=pct(mark.v);
+    h+=`<div class="mark" style="left:${p}%"></div><div class="marklab" style="left:${p}%">${mark.l}</div>`;}
+  return h+`</div>`;
+}
+const INTERP = [
+{ nom:"Coeficiente de determinación r²", sub:"Qué significa el número, no solo cómo se calcula",
+  formula:"r² = proporción de varianza de Y explicada por X",
+  visual:`<div class="pbar"><span class="exp" style="width:25%">25 %</span><span class="noexp" style="width:75%">75 %</span></div>
+    <div class="pbar-lab"><span>◄ Explicado por X · r² con r = 0,50</span><span>Sin explicar ►</span></div>`,
+  caso:`Un estudio halla una correlación de <b>r = 0,50</b> entre horas de sueño y rendimiento. Suena «media-alta», pero para saber cuánto explica de verdad hay que elevarla al cuadrado: <span class="f">r² = 0,50² = 0,25</span>.`,
+  lee:`El sueño explica solo el <b>25 %</b> de la variabilidad del rendimiento; el 75 % restante depende de otras variables. Por eso r = 0,50 <b>no</b> es «la mitad»: la relación es real, pero deja fuera tres cuartas partes de lo que hace variar la nota.` },
+
+{ nom:"Correlación de Pearson r", sub:"El signo da la dirección; la distancia a 0, la fuerza",
+  formula:"r = S_xy / (S_x · S_y) · acotada entre −1 y +1",
+  visual:nline(-1,1,[{v:-1,l:"−1"},{v:-0.5,l:"−0,5"},{v:0,l:"0"},{v:0.5,l:"+0,5"},{v:1,l:"+1"}],
+    {v:-0.85,l:"r = −0,85"},[{a:-1,b:0,cls:""}]),
+  caso:`<b>r = −0,85</b> entre horas de móvil y horas de sueño: relación fuerte y negativa (más móvil, menos sueño).`,
+  lee:`El signo <b>−</b> dice que van en sentidos opuestos; el <b>0,85</b>, tan cerca de 1, dice que la relación es fuerte. Referencias: hasta ±0,1 pequeña, ±0,3 mediana, ±0,5 alta. Como está acotada entre −1 y +1, se puede comparar entre estudios; la covarianza, no.` },
+
+{ nom:"Tipificación z y la regla de la normal", sub:"A cuántas desviaciones típicas del centro está un valor",
+  formula:"z = (X − μ) / σ · centro 0, dispersión 1",
+  visual:nline(-3.2,3.2,[{v:-3,l:"−3"},{v:-2,l:"−2"},{v:-1,l:"−1"},{v:0,l:"0"},{v:1,l:"1"},{v:2,l:"2"},{v:3,l:"3"}],
+    {v:2,l:"z = 2"},[{a:-1,b:1,cls:"ok"}]),
+  caso:`Un CI de 130 en una <b>N(100, 15)</b>: <span class="f">z = (130 − 100)/15 = 2</span>.`,
+  lee:`Está <b>2 desviaciones típicas</b> por encima de la media. Por la regla de la normal, dentro de ±1σ cae el 68 %, dentro de ±2σ el 95 % y dentro de ±3σ el 99,7 %. Un z = 2 deja por debajo ≈ 0,9772: solo un 2,3 % de la gente supera ese CI.` },
+
+{ nom:"Coeficiente de variación CV", sub:"Dispersión relativa: compara variables de distinta unidad",
+  formula:"CV = S_x / |m| · 100",
+  visual:`<div class="cvrow"><span class="cvname">Peso (A)</span><span class="cvbar" style="width:17%"></span><span class="cvval">CV = 10 %</span></div>
+    <div class="cvrow"><span class="cvname">Reacción (B)</span><span class="cvbar" style="width:33%"></span><span class="cvval">CV = 20 %</span></div>
+    <div class="pbar-lab"><span>Más homogéneo</span><span>Más heterogéneo · &gt; 50 % mucho</span></div>`,
+  caso:`Grupo A: peso medio 70 kg, DT 7 kg → <span class="f">CV = 7/70·100 = 10 %</span>. Grupo B: reacción media 300 ms, DT 60 ms → <span class="f">CV = 60/300·100 = 20 %</span>.`,
+  lee:`Aunque kilos y milisegundos <b>no</b> se puedan comparar en bruto, el CV es adimensional: B es el <b>doble de heterogéneo</b> que A. Orientativo: por encima del 50 % hay mucha dispersión relativa.` },
+
+{ nom:"Ji-cuadrado y V de Cramer", sub:"χ² dice SI hay asociación; φ / V dicen CUÁNTA",
+  formula:"χ² = Σ(o − e)²/e (0 a +∞) · φ = √(χ²/n) · V = √(χ²/(n(k−1)))",
+  visual:`<div class="pbar"><span class="exp" style="width:41%">φ = 0,41</span><span class="noexp" style="width:59%"></span></div>
+    <div class="pbar-lab"><span>0 · sin asociación</span><span>1 · asociación total</span></div>`,
+  caso:`En una tabla 2×2 (deporte × dormir bien, n = 100) sale <b>χ² = 16,67</b>. Ese número no está acotado, así que se convierte en <span class="f">φ = √(16,67/100) = 0,41</span>.`,
+  lee:`χ² = 16,67 solo no dice si la relación es fuerte: <b>depende de n</b> y va de 0 a infinito. φ = 0,41 sí se lee como una correlación (0 a 1): asociación media-alta. En tablas mayores de 2×2 se usa la V de Cramer en vez de φ.` },
+
+{ nom:"Intervalo de confianza para la media", sub:"El rango de valores de μ compatibles con la muestra",
+  formula:"IC = x̄ ∓ z(1−α/2) · σ/√n · con α = 0,05, z = 1,96",
+  visual:nline(23.4,26.6,[{v:24,l:"24"},{v:25,l:"x̄ = 25"},{v:26,l:"26"}],
+    {v:24,l:"μ₀ = 24 (fuera)"},[{a:24.216,b:25.784,cls:"ok"}]),
+  caso:`Con x̄ = 25, σ² = 16 (σ = 4), n = 100 y α = 0,05: <span class="f">25 ∓ 1,96·4/10 = 25 ∓ 0,784</span> → <b>[24,216 ; 25,784]</b>.`,
+  lee:`El intervalo recoge los valores de μ plausibles al 95 %. El valor hipotético <b>24 queda fuera</b>, así que un contraste bilateral lo rechazaría: IC y contraste son equivalentes. A mayor n, más estrecho (más preciso) el intervalo.` },
+
+{ nom:"Contraste de una media", sub:"¿Cae el estadístico en la zona crítica?",
+  formula:"Z = (m − μ) / (σ/√n) · zona crítica bilateral |Z| ≥ 1,96",
+  visual:nline(-3.2,3.2,[{v:-1.96,l:"−1,96"},{v:0,l:"0"},{v:1.96,l:"+1,96"}],
+    {v:2.5,l:"Z = 2,5"},[{a:-3.2,b:-1.96,cls:"crit"},{a:1.96,b:3.2,cls:"crit"},{a:-1.96,b:1.96,cls:"ok"}]),
+  caso:`Contrastar μ = 24 con x̄ = 25, σ = 4, n = 100, α = 0,05: <span class="f">Z = (25 − 24)/(4/10) = 2,5</span>.`,
+  lee:`Como <b>|2,5| ≥ 1,96</b>, el estadístico cae en la <b>zona crítica</b> (roja) y se rechaza H₀. Si hubiera caído en la zona central (verde), H₀ se <b>mantendría</b>, nunca «se acepta». Con σ desconocida se usaría la t con gl = n − 1.` }
+];
+function interpHTML(d){
+  return `<div class="interp">
+    <h3>${d.nom}</h3>
+    <div class="sub">${d.sub}</div>
+    <span class="fbadge">${d.formula}</span>
+    ${d.visual}
+    <div class="interp-caso">
+      <div class="pt">Caso práctico</div>
+      <p>${d.caso}</p>
+      <div class="lee"><b>Interpretación</b> — ${d.lee}</div>
+    </div>
+  </div>`;
+}
 function pintaRecordatorio(){
   $("#p-recordatorio").innerHTML = `
   <div class="hd">
@@ -2686,6 +3028,14 @@ function pintaRecordatorio(){
       <tr><td>Estimar un parámetro con σ desconocida</td><td>IC con t, gl = n−1</td><td>—</td></tr>
     </table></div>
   </div>
+
+  <div class="hd" style="margin:26px 0 14px"><div>
+    <div class="eyebrow">Interpretar, no solo memorizar</div>
+    <h2 style="font-size:23px">Las fórmulas clave, leídas con un caso</h2>
+    <p class="lead" style="max-width:68ch">La misma fórmula del formulario, pero con una imagen de qué mide
+    y un caso resuelto abajo que enseña a leer el resultado, que es lo que de verdad pregunta el examen.</p>
+  </div></div>
+  <div class="interp-grid" style="margin-bottom:16px">${INTERP.map(interpHTML).join("")}</div>
 
   <div class="cols" style="margin-bottom:16px">
     <div class="card">
