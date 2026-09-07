@@ -1969,14 +1969,25 @@ function pintaTemas(){
 
 /* ============ EJERCICIOS ============ */
 const NOMTIPO = {t:"Test",vf:"V / F",d:"Desarrollo"};
+/* puntuación (solo preguntas cerradas: V/F y test) */
+function scoreEj(){
+  let respN=0, acier=0, cerrN=0;
+  EJ.forEach((e,i)=>{ if(e.k==="d") return; cerrN++;
+    if(respu[i]!==undefined){ respN++;
+      if(e.k==="vf" ? respu[i]===e.ok : respu[i]===e.ans) acier++; } });
+  const fall = respN - acier;
+  return {respN, cerrN, acier, fall, nota: Math.max(0, acier - fall/2)};
+}
+/* refresca solo los números del marcador, sin re-renderizar las tarjetas */
+function actualizaScoreEj(){
+  const s = scoreEj(), set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v;};
+  set("ej-resp", s.respN); set("ej-acier", s.acier);
+  set("ej-fall", s.fall);  set("ej-nota", num(s.nota,1));
+}
 function pintaEjercicios(){
   const lista = EJ.map((e,i)=>({...e,i}))
     .filter(e=> (filtroTema==="all"||e.tm===filtroTema) && (filtroTipo==="all"||e.k===filtroTipo));
-  const cerr = EJ.map((e,i)=>({...e,i})).filter(e=>e.k!=="d");
-  const resp = cerr.filter(e=>respu[e.i]!==undefined);
-  const acier = resp.filter(e=> e.k==="vf" ? respu[e.i]===e.ok : respu[e.i]===e.ans).length;
-  const fall = resp.length - acier;
-  const nota = Math.max(0, acier - fall/2);
+  const s = scoreEj();
   $("#p-ejercicios").innerHTML = `
     <div class="hd">
       <div>
@@ -1988,10 +1999,10 @@ function pintaEjercicios(){
       </div>
     </div>
     <div class="score" style="margin-bottom:18px">
-      <span>Contestadas <b>${resp.length}</b>/${cerr.length}</span>
-      <span>Aciertos <b>${acier}</b></span>
-      <span>Errores <b>${fall}</b></span>
-      <span>Puntuación corregida <b>${num(nota,1)}</b></span>
+      <span>Contestadas <b id="ej-resp">${s.respN}</b>/${s.cerrN}</span>
+      <span>Aciertos <b id="ej-acier">${s.acier}</b></span>
+      <span>Errores <b id="ej-fall">${s.fall}</b></span>
+      <span>Puntuación corregida <b id="ej-nota">${num(s.nota,1)}</b></span>
       <button class="chip" id="reset-ej" style="margin-left:auto">Borrar respuestas</button>
     </div>
     ${pintaTestsExternos()}
@@ -2015,7 +2026,11 @@ function pintaEjercicios(){
     store.set("ea-ej",respu);
     const e = EJ[i];
     syncRespuesta(i, respu[i], e.k==="vf" ? respu[i]===e.ok : respu[i]===e.ans);
-    pintaEjercicios();
+    // actualiza solo esta tarjeta (queda corregida y deshabilitada) y el marcador,
+    // en vez de re-renderizar las 60 preguntas
+    const card = b.closest(".ej");
+    if(card) card.outerHTML = tarjetaEj(Object.assign({}, e, {i}));
+    actualizaScoreEj();
   });
   enlazaSimulacros();
   $("#p-ejercicios").querySelectorAll(".rev").forEach(b=>b.onclick=()=>{
