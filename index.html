@@ -1578,10 +1578,12 @@ const PANELS = [["calendario","Calendario"],["temas","Temas"],["formulas","Fórm
                 ["ejercicios","Ejercicios"],["spss","Ejercicios SPSS"],["recordatorio","Recordatorio"]];
 $("#tabs").innerHTML = PANELS.map(([id,l],i)=>
   `<button class="tab" role="tab" data-p="${id}" aria-selected="${i===0}">${l}</button>`).join("");
-function activaPanel(id){
+function activaPanel(id, noScroll){
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.p===id));
   document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on", p.id==="p-"+id));
-  window.scrollTo({top:0,behavior:"auto"});
+  // noScroll: cuando quien llama va a desplazarse a un elemento concreto (enlaces
+  // profundos), evitamos el salto al inicio para no encadenar dos desplazamientos.
+  if(!noScroll) window.scrollTo({top:0,behavior:"auto"});
 }
 $("#tabs").addEventListener("click",e=>{
   const b = e.target.closest(".tab"); if(!b) return;
@@ -1741,9 +1743,10 @@ function calNavega(goto, tema){
     if(tema){ temaSel=tema; store.set("ea-tema",temaSel); pintaTemas(); }
     activaPanel("temas");
   }else if(goto==="formulas"){
-    filtroF="all"; pintaFormulas(); activaPanel("formulas");
+    filtroF="all"; pintaFormulas(); activaPanel("formulas", !!tema);
     if(tema) setTimeout(()=>{ const el=document.querySelector('.bloque[data-tema="'+tema+'"]');
-      if(el) el.scrollIntoView({block:"start",behavior:"smooth"}); }, 40);
+      if(el) el.scrollIntoView({block:"start",behavior:"smooth"});
+      else window.scrollTo({top:0,behavior:"smooth"}); }, 40);
   }else if(goto==="ejercicios"){
     filtroTema = tema||"all"; filtroTipo="all"; pintaEjercicios(); activaPanel("ejercicios");
   }else if(goto==="spss"){
@@ -2554,11 +2557,12 @@ function fichaF(f){
 }
 /* salta a la pestaña Fórmulas y resalta una fórmula concreta por su nombre */
 function irAFormula(nom){
-  filtroF="all"; pintaFormulas(); activaPanel("formulas");
+  filtroF="all"; pintaFormulas(); activaPanel("formulas", true);
   requestAnimationFrame(()=>{
     const el = document.getElementById("f-"+slug(nom));
     if(el){ el.scrollIntoView({block:"center",behavior:"smooth"});
       el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),2200); }
+    else window.scrollTo({top:0,behavior:"smooth"});
   });
 }
 /* salta al glosario del tema y resalta el término */
